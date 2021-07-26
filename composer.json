@@ -1,0 +1,72 @@
+{
+    "name": "phpcfdi/image-captcha-resolver",
+    "description": "Conectores para resolver captchas de imágenes",
+    "keywords": [],
+    "homepage": "https://github.com/phpcfdi/image-captcha-resolver",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carlos C Soto",
+            "email": "eclipxe13@gmail.com",
+            "homepage": "https://github.com/phpcfdi/image-captcha-resolver"
+        }
+    ],
+    "require": {
+        "php": ">=7.3",
+        "ext-json": "*",
+        "ext-fileinfo": "*",
+        "symfony/polyfill-php80": "^1.23",
+        "psr/http-client": "^1.0",
+        "psr/http-factory": "^1.0",
+        "psr/http-message": "^1.0",
+        "php-http/discovery": "^1.14"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5",
+        "php-http/mock-client": "^1.4",
+        "vlucas/phpdotenv": "^5.3",
+        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/psr7": "^2.0",
+        "php-http/guzzle7-adapter": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhpCfdi\\ImageCaptchaResolver\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhpCfdi\\ImageCaptchaResolver\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "dev:install": [
+            "bash develop/install-development-tools"
+        ],
+        "dev:build": ["@dev:fix-style", "@dev:test"],
+        "dev:check-style": [
+            "@php tools/php-cs-fixer fix --dry-run --verbose",
+            "@php tools/phpcs --colors -sp"
+        ],
+        "dev:fix-style": [
+            "@php tools/php-cs-fixer fix --verbose",
+            "@php tools/phpcbf --colors -sp"
+        ],
+        "dev:test": [
+            "@dev:check-style",
+            "@php vendor/bin/phpunit --testdox --verbose --stop-on-failure",
+            "@php tools/phpstan analyse --verbose"
+        ],
+        "dev:coverage": [
+            "@php -dzend_extension=xdebug.so -dxdebug.mode=coverage vendor/bin/phpunit --coverage-html build/coverage/html/"
+        ]
+    },
+    "scripts-descriptions": {
+        "dev:install": "DEV: install development tools into tools/",
+        "dev:build": "DEV: run dev:fix-style and dev:tests, run before pull request",
+        "dev:check-style": "DEV: search for code style errors using php-cs-fixer and phpcs",
+        "dev:fix-style": "DEV: fix code style errors using php-cs-fixer and phpcbf",
+        "dev:test": "DEV: run dev:check-style, phpunit and phpstan",
+        "dev:coverage": "DEV: run phpunit with xdebug and storage coverage in build/coverage/html/"
+    }
+}
