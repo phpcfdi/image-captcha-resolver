@@ -264,7 +264,7 @@ and licensed for use under the MIT License (MIT). Please see [LICENSE][] for mor
 [coverage]: https://scrutinizer-ci.com/g/phpcfdi/image-captcha-resolver/code-structure/main/code-coverage/src
 [downloads]: https://packagist.org/packages/phpcfdi/image-captcha-resolver
 
-[badge-source]: http://img.shields.io/badge/source-phpcfdi/image-captcha-resolver-blue?style=flat-square
+[badge-source]: http://img.shields.io/badge/source-phpcfdi/image--captcha--resolver-blue?style=flat-square
 [badge-release]: https://img.shields.io/github/release/phpcfdi/image-captcha-resolver?style=flat-square
 [badge-license]: https://img.shields.io/github/license/phpcfdi/image-captcha-resolver?style=flat-square
 [badge-build]: https://img.shields.io/github/workflow/status/phpcfdi/image-captcha-resolver/build/main?style=flat-square

@@ -4,7 +4,7 @@
 
 Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
-## Version 0.1.0
+## Versión 0.1.0
 
 Versión inicial, implementa los siguientes resolvedores:
 
