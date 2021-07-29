@@ -4,7 +4,7 @@
 
 Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
-## Versión UNRELEASED 2021-07-28
+## Versión 0.2.0 2021-07-28
 
 Se agrega el resolvedor `CommandLineResolver` que pasa la imagen del captcha como un archivo temporal
 para ser resuelto por un commando externo.
