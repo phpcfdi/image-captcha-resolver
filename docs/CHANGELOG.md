@@ -12,6 +12,8 @@ para ser resuelto por un commando externo.
 Se agrega el resolvedor `MultiResolver` que contiene un conjunto de resolvedores para intentar resolver
 con ellos uno a uno.
 
+Se cambia el nombre de la excepción `UnableToResolveCaptcha` a `UnableToResolveCaptchaException`.
+
 Se cambia el nombre de la excepción `UndiscoverableClient` a `UndiscoverableClientException`.
 
 Se agrega la clase interna `TemporaryFile` para crear y eliminar archivos temporales.

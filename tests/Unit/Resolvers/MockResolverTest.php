@@ -11,7 +11,7 @@ use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaResolverInterface;
 use PhpCfdi\ImageCaptchaResolver\Resolvers\MockResolver;
 use PhpCfdi\ImageCaptchaResolver\Tests\TestCase;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 
 final class MockResolverTest extends TestCase
 {
@@ -31,7 +31,7 @@ final class MockResolverTest extends TestCase
 
         $resolver = new MockResolver(...[
             $first = new CaptchaAnswer('foo'),
-            $second = $this->createMock(UnableToResolveCaptcha::class),
+            $second = $this->createMock(UnableToResolveCaptchaException::class),
             $third = new CaptchaAnswer('bar'),
         ]);
         $this->assertFalse($resolver->isEmpty());
@@ -44,7 +44,7 @@ final class MockResolverTest extends TestCase
         $catchedException = null;
         try {
             $resolver->resolve($image);
-        } catch (UnableToResolveCaptcha $exception) {
+        } catch (UnableToResolveCaptchaException $exception) {
             $catchedException = $exception;
         }
         $this->assertSame($second, $catchedException);

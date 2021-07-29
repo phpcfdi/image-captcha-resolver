@@ -12,7 +12,7 @@ use PhpCfdi\ImageCaptchaResolver\HttpClient\UndiscoverableClientException;
 use PhpCfdi\ImageCaptchaResolver\Resolvers\AntiCaptchaResolver\AntiCaptchaConnector;
 use PhpCfdi\ImageCaptchaResolver\Timer\Timer;
 use PhpCfdi\ImageCaptchaResolver\Timer\TimerInterface;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 use RuntimeException;
 use Throwable;
 
@@ -75,7 +75,7 @@ final class AntiCaptchaResolver implements CaptchaResolverInterface
         try {
             return $this->resolveImage($image);
         } catch (Throwable $exception) {
-            throw new UnableToResolveCaptcha($this, $image, $exception);
+            throw new UnableToResolveCaptchaException($this, $image, $exception);
         }
     }
 

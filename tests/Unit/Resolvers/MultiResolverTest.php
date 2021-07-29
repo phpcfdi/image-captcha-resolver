@@ -11,7 +11,7 @@ use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
 use PhpCfdi\ImageCaptchaResolver\Resolvers\MockResolver;
 use PhpCfdi\ImageCaptchaResolver\Resolvers\MultiResolver;
 use PhpCfdi\ImageCaptchaResolver\Tests\TestCase;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 
 final class MultiResolverTest extends TestCase
 {
@@ -22,14 +22,14 @@ final class MultiResolverTest extends TestCase
         $this->assertCount(0, $resolver);
         $this->assertSame([], $resolver->getResolvers());
 
-        $this->expectException(UnableToResolveCaptcha::class);
+        $this->expectException(UnableToResolveCaptchaException::class);
         $resolver->resolve($image);
     }
 
     public function testWithResolversThatReturnsAnswerAtEnd(): void
     {
         $image = $this->createMock(CaptchaImageInterface::class);
-        $unableToResolveCaptcha = $this->createMock(UnableToResolveCaptcha::class);
+        $unableToResolveCaptcha = $this->createMock(UnableToResolveCaptchaException::class);
         $predefinedAnswer = new CaptchaAnswer('qwerty');
         $givenResolvers = [
             new MockResolver($unableToResolveCaptcha),

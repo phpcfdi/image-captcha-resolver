@@ -7,7 +7,7 @@ namespace PhpCfdi\ImageCaptchaResolver;
 use RuntimeException;
 use Throwable;
 
-class UnableToResolveCaptcha extends RuntimeException
+class UnableToResolveCaptchaException extends RuntimeException
 {
     /** @var CaptchaResolverInterface */
     private $resolver;

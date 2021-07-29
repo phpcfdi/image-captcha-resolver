@@ -9,7 +9,7 @@ use PhpCfdi\ImageCaptchaResolver\CaptchaAnswerInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaResolverInterface;
 use PhpCfdi\ImageCaptchaResolver\Internal\TemporaryFile;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 use RuntimeException;
 use Throwable;
 
@@ -86,7 +86,7 @@ final class CommandLineResolver implements CaptchaResolverInterface
         try {
             return $this->realResolve($image);
         } catch (Throwable $exception) {
-            throw new UnableToResolveCaptcha($this, $image, $exception);
+            throw new UnableToResolveCaptchaException($this, $image, $exception);
         }
     }
 

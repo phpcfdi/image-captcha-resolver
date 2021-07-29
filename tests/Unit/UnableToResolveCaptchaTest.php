@@ -7,7 +7,7 @@ namespace PhpCfdi\ImageCaptchaResolver\Tests\Unit;
 use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaResolverInterface;
 use PhpCfdi\ImageCaptchaResolver\Tests\TestCase;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 use Throwable;
 
 final class UnableToResolveCaptchaTest extends TestCase
@@ -18,7 +18,7 @@ final class UnableToResolveCaptchaTest extends TestCase
         $image = $this->createMock(CaptchaImageInterface::class);
         $previous = $this->createMock(Throwable::class);
 
-        $exception = new UnableToResolveCaptcha($resolver, $image, $previous);
+        $exception = new UnableToResolveCaptchaException($resolver, $image, $previous);
 
         $this->assertSame($resolver, $exception->getResolver());
         $this->assertSame($image, $exception->getImage());
@@ -31,7 +31,7 @@ final class UnableToResolveCaptchaTest extends TestCase
         $resolver = $this->createMock(CaptchaResolverInterface::class);
         $image = $this->createMock(CaptchaImageInterface::class);
 
-        $exception = new UnableToResolveCaptcha($resolver, $image);
+        $exception = new UnableToResolveCaptchaException($resolver, $image);
 
         $this->assertNull($exception->getPrevious());
     }

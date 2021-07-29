@@ -15,7 +15,7 @@ use PhpCfdi\ImageCaptchaResolver\Resolvers\AntiCaptchaResolver\AntiCaptchaConnec
 use PhpCfdi\ImageCaptchaResolver\Tests\HttpTestCase;
 use PhpCfdi\ImageCaptchaResolver\Tests\Unit\FakeExpiredTimer;
 use PhpCfdi\ImageCaptchaResolver\Timer\Timer;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 use PHPUnit\Framework\MockObject\MockObject;
 
 final class AntiCaptchaResolverTest extends HttpTestCase
@@ -66,7 +66,7 @@ final class AntiCaptchaResolverTest extends HttpTestCase
         $catchedException = null;
         try {
             $resolver->resolve($image);
-        } catch (UnableToResolveCaptcha $exception) {
+        } catch (UnableToResolveCaptchaException $exception) {
             $catchedException = $exception;
         }
 
@@ -90,7 +90,7 @@ final class AntiCaptchaResolverTest extends HttpTestCase
         $catchedException = null;
         try {
             $resolver->resolve($image);
-        } catch (UnableToResolveCaptcha $exception) {
+        } catch (UnableToResolveCaptchaException $exception) {
             $catchedException = $exception;
         }
 

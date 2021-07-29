@@ -55,7 +55,7 @@ y que la imagen del captcha se encuentra como imagen embedida y su contenido en 
 
 use PhpCfdi\ImageCaptchaResolver\CaptchaImage;
 use PhpCfdi\ImageCaptchaResolver\CaptchaResolverInterface;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 
 /**
  * @var string $theImgElementSrcAtributte
@@ -66,7 +66,7 @@ $image = CaptchaImage::newFromInlineHtml($theImgElementSrcAtributte);
 
 try {
     $answer = $resolver->resolve($image);
-} catch (UnableToResolveCaptcha $exception) {
+} catch (UnableToResolveCaptchaException $exception) {
     echo 'No se pudo resolver el captcha', PHP_EOL;
     return;
 }
@@ -159,7 +159,7 @@ la respuesta del captcha.
 
 use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
 use PhpCfdi\ImageCaptchaResolver\Resolvers\CommandLineResolver;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 
 /**
  * @var CaptchaImageInterface $image 
@@ -169,7 +169,7 @@ $resolver = CommandLineResolver::create(explode(' ', 'my-captcha-breaker --in {f
 
 try {
     $answer = $resolver->resolve($image);
-} catch (UnableToResolveCaptcha $exception) {
+} catch (UnableToResolveCaptchaException $exception) {
     echo 'No se pudo resolver el captcha: ', $exception->getMessage(), PHP_EOL;
     return;
 }
@@ -195,7 +195,7 @@ ejecutando el proceso. Solo es útil si puede escribir la respuesta. Si no se re
 en un tiempo predeterminado el resolvedor fallará lo tomará como una respuesta vacía.
 
 Si está haciendo pruebas unitarias, la mejor alternativa es usar el resolvedor `MockResolver`, que se construye
-con respuestas prestablecidas `CaptchaAnswerInterface` o excepciones `UnableToResolveCaptcha` y falla con una
+con respuestas prestablecidas `CaptchaAnswerInterface` o excepciones `UnableToResolveCaptchaException` y falla con una
 excepción `OutOfRangeException` si se le pide una respuesta y ya no tiene más.
 
 ### Nuevos resolvedores

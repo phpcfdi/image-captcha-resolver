@@ -8,7 +8,7 @@ use Countable;
 use PhpCfdi\ImageCaptchaResolver\CaptchaAnswerInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaResolverInterface;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 use Throwable;
 
 final class MultiResolver implements CaptchaResolverInterface, Countable
@@ -45,7 +45,7 @@ final class MultiResolver implements CaptchaResolverInterface, Countable
             }
         }
 
-        throw new UnableToResolveCaptcha($this, $image);
+        throw new UnableToResolveCaptchaException($this, $image);
     }
 
     public function count(): int

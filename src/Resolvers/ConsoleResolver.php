@@ -8,7 +8,7 @@ use PhpCfdi\ImageCaptchaResolver\CaptchaAnswer;
 use PhpCfdi\ImageCaptchaResolver\CaptchaAnswerInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaResolverInterface;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 use RuntimeException;
 use Throwable;
 
@@ -41,7 +41,7 @@ class ConsoleResolver implements CaptchaResolverInterface
         try {
             return $this->realResolveProcess($image);
         } catch (Throwable $exception) {
-            throw new UnableToResolveCaptcha($this, $image, $exception);
+            throw new UnableToResolveCaptchaException($this, $image, $exception);
         }
     }
 

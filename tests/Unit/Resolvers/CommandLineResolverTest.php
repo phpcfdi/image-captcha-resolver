@@ -9,7 +9,7 @@ use PhpCfdi\ImageCaptchaResolver\CaptchaImage;
 use PhpCfdi\ImageCaptchaResolver\CaptchaResolverInterface;
 use PhpCfdi\ImageCaptchaResolver\Resolvers\CommandLineResolver;
 use PhpCfdi\ImageCaptchaResolver\Tests\TestCase;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 
 final class CommandLineResolverTest extends TestCase
 {
@@ -82,7 +82,7 @@ final class CommandLineResolverTest extends TestCase
     {
         $image = CaptchaImage::newFromFile($this->filePath('captcha-qwerty.png'));
         $resolver = CommandLineResolver::create(['false']);
-        $this->expectException(UnableToResolveCaptcha::class);
+        $this->expectException(UnableToResolveCaptchaException::class);
         $resolver->resolve($image);
     }
 }

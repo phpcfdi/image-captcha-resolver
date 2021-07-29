@@ -11,7 +11,7 @@ use PhpCfdi\ImageCaptchaResolver\Internal\TemporaryFile;
 use PhpCfdi\ImageCaptchaResolver\Resolvers\ConsoleResolver;
 use PhpCfdi\ImageCaptchaResolver\Tests\TestCase;
 use PhpCfdi\ImageCaptchaResolver\Tests\Unit\ConsoleResolverWithInput;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 
 final class ConsoleResolverTest extends TestCase
 {
@@ -34,7 +34,7 @@ final class ConsoleResolverTest extends TestCase
 
         $resolver = (new ConsoleResolverWithInput())->setInput('');
 
-        $this->expectException(UnableToResolveCaptcha::class);
+        $this->expectException(UnableToResolveCaptchaException::class);
         $this->expectOutputRegex('/Resolve the captcha stored on file .+:/');
         $resolver->resolve($image);
     }
@@ -45,7 +45,7 @@ final class ConsoleResolverTest extends TestCase
         $image = CaptchaImage::newFromFile($this->filePath('captcha-qwerty.png'));
         $resolver = new ConsoleResolver($tempfile->getPath(), 0.1);
 
-        $this->expectException(UnableToResolveCaptcha::class);
+        $this->expectException(UnableToResolveCaptchaException::class);
         $this->expectOutputRegex('/Resolve the captcha stored on file .+:/');
         $resolver->resolve($image);
     }

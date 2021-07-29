@@ -12,7 +12,7 @@ interface CaptchaResolverInterface
      *
      * @param CaptchaImageInterface $image
      * @return CaptchaAnswerInterface
-     * @throws UnableToResolveCaptcha
+     * @throws UnableToResolveCaptchaException
      */
     public function resolve(CaptchaImageInterface $image): CaptchaAnswerInterface;
 }
