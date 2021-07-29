@@ -7,7 +7,7 @@ namespace PhpCfdi\ImageCaptchaResolver\Resolvers;
 use PhpCfdi\ImageCaptchaResolver\CaptchaAnswerInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaResolverInterface;
-use PhpCfdi\ImageCaptchaResolver\HttpClient\UndiscoverableClient;
+use PhpCfdi\ImageCaptchaResolver\HttpClient\UndiscoverableClientException;
 use PhpCfdi\ImageCaptchaResolver\Resolvers\CaptchaLocalResolver\CaptchaLocalResolverConnector;
 use PhpCfdi\ImageCaptchaResolver\Timer\Timer;
 use PhpCfdi\ImageCaptchaResolver\Timer\TimerInterface;
@@ -42,7 +42,7 @@ class CaptchaLocalResolver implements CaptchaResolverInterface
      * @param int $timeoutSeconds
      * @param int $sleepMilliseconds
      * @return self
-     * @throws UndiscoverableClient
+     * @throws UndiscoverableClientException
      */
     public static function create(
         string $baseUrl,

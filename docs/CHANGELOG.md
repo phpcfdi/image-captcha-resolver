@@ -6,6 +6,8 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 ## Versión UNRELEASED 2021-07-28
 
+Se cambia el nombre de la excepción `UndiscoverableClient` a `UndiscoverableClientException`.
+
 Se agrega la clase interna `TemporaryFile` para crear y eliminar archivos temporales.
 
 ## Versión 0.1.0 2021-07-26

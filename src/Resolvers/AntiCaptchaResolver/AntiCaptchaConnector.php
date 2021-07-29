@@ -8,7 +8,7 @@ use LogicException;
 use PhpCfdi\ImageCaptchaResolver\HttpClient\HttpClient;
 use PhpCfdi\ImageCaptchaResolver\HttpClient\HttpClientInterface;
 use PhpCfdi\ImageCaptchaResolver\HttpClient\HttpException;
-use PhpCfdi\ImageCaptchaResolver\HttpClient\UndiscoverableClient;
+use PhpCfdi\ImageCaptchaResolver\HttpClient\UndiscoverableClientException;
 use RuntimeException;
 use stdClass;
 use Stringable;
@@ -33,7 +33,7 @@ class AntiCaptchaConnector
      *
      * @param string $clientKey
      * @param HttpClientInterface|null $httpClient
-     * @throws UndiscoverableClient
+     * @throws UndiscoverableClientException
      */
     public function __construct(string $clientKey, HttpClientInterface $httpClient = null)
     {

@@ -10,7 +10,7 @@ use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
 use PhpCfdi\ImageCaptchaResolver\HttpClient\HttpClient;
 use PhpCfdi\ImageCaptchaResolver\HttpClient\HttpClientInterface;
 use PhpCfdi\ImageCaptchaResolver\HttpClient\HttpException;
-use PhpCfdi\ImageCaptchaResolver\HttpClient\UndiscoverableClient;
+use PhpCfdi\ImageCaptchaResolver\HttpClient\UndiscoverableClientException;
 use PhpCfdi\ImageCaptchaResolver\Timer\TimerInterface;
 use RuntimeException;
 
@@ -33,7 +33,7 @@ class CaptchaLocalResolverConnector
      *
      * @param string $baseUrl Full URL to access service, by example http://localhost:9095
      * @param HttpClientInterface|null $httpClient
-     * @throws UndiscoverableClient
+     * @throws UndiscoverableClientException
      */
     public function __construct(string $baseUrl, HttpClientInterface $httpClient = null)
     {
