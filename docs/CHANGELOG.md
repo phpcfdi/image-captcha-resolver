@@ -8,7 +8,7 @@ Utilizamos [Versionado Semántico 2.0.0](SEMVER.md).
 
 Se agrega la clase interna `TemporaryFile` para crear y eliminar archivos temporales.
 
-## Versión 0.1.0
+## Versión 0.1.0 2021-07-26
 
 Versión inicial, implementa los siguientes resolvedores:
 
