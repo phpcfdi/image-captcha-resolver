@@ -142,6 +142,41 @@ $resolverConstructed = new CaptchaLocalResolver(
 );
 ```
 
+### Creación de un resolvedor de captchas basado en línea de comandos
+
+La implementación dependerá siempre de la herramienta que se esté utilizando, es probable que fabrique
+su propio punto de entrada a la herramienta para que devuelva el *exit code* correcto y la respuesta.
+
+Esta herramienta podría ser útil en caso de que el captcha se pueda resolver utilizando alguna herramienta
+como [`tesseract`](https://github.com/tesseract-ocr/tesseract).
+
+El siguiente ejemplo supone que tiene la imagen del captcha a resolver en `$image` y que existe un commando
+llamado `my-captcha-breaker` que se le entrega una imagen y devuelve en el último renglón de la salida
+la respuesta del captcha.
+
+```php
+<?php declare(strict_types=1);
+
+use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
+use PhpCfdi\ImageCaptchaResolver\Resolvers\CommandLineResolver;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+
+/**
+ * @var CaptchaImageInterface $image 
+ */
+
+$resolver = CommandLineResolver::create(explode(' ', 'my-captcha-breaker --in {file} --stdout'));
+
+try {
+    $answer = $resolver->resolve($image);
+} catch (UnableToResolveCaptcha $exception) {
+    echo 'No se pudo resolver el captcha: ', $exception->getMessage(), PHP_EOL;
+    return;
+}
+
+echo $answer, PHP_EOL;
+```
+
 ## Resolvedores
 
 ### Resolvedores para pruebas
