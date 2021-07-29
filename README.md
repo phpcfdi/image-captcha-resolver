@@ -179,6 +179,12 @@ echo $answer, PHP_EOL;
 
 ## Resolvedores
 
+### Multiresolvedor
+
+El resolvedor `MultiResolver` es en sí mismo un resolvedor que intenta resolver el captcha usando un conjunto
+predefinido de resolvedores. Podría ser útil para intentar resolver utilizando diferentes estrategias
+o reintentando con un mismo resolvedor el número de veces en las que esté incluído.
+
 ### Resolvedores para pruebas
 
 El resolvedor `CaptchaLocalResolver` usa servicio de resolución de captchas local y es comúnmente utilizado para pruebas.
