@@ -14,7 +14,7 @@ use PhpCfdi\ImageCaptchaResolver\Resolvers\CaptchaLocalResolver\CaptchaLocalReso
 use PhpCfdi\ImageCaptchaResolver\Tests\TestCase;
 use PhpCfdi\ImageCaptchaResolver\Tests\Unit\FakeExpiredTimer;
 use PhpCfdi\ImageCaptchaResolver\Timer\Timer;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 use PHPUnit\Framework\MockObject\MockObject;
 
 final class CaptchaLocalResolverTest extends TestCase
@@ -58,7 +58,7 @@ final class CaptchaLocalResolverTest extends TestCase
         $catchedException = null;
         try {
             $resolver->resolve($image);
-        } catch (UnableToResolveCaptcha $exception) {
+        } catch (UnableToResolveCaptchaException $exception) {
             $catchedException = $exception;
         }
 

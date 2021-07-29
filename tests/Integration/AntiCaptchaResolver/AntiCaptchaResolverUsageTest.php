@@ -7,7 +7,7 @@ namespace PhpCfdi\ImageCaptchaResolver\Tests\Integration\AntiCaptchaResolver;
 use PhpCfdi\ImageCaptchaResolver\CaptchaImage;
 use PhpCfdi\ImageCaptchaResolver\Resolvers\AntiCaptchaResolver;
 use PhpCfdi\ImageCaptchaResolver\Tests\TestCase;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 
 final class AntiCaptchaResolverUsageTest extends TestCase
 {
@@ -45,7 +45,7 @@ final class AntiCaptchaResolverUsageTest extends TestCase
         $resolver = AntiCaptchaResolver::create($clientKey, 2, 30, 1000);
         $image = CaptchaImage::newFromFile($this->filePath('captcha-qwerty.png'));
 
-        $this->expectException(UnableToResolveCaptcha::class);
+        $this->expectException(UnableToResolveCaptchaException::class);
         $resolver->resolve($image);
     }
 }

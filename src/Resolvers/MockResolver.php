@@ -9,17 +9,17 @@ use OutOfRangeException;
 use PhpCfdi\ImageCaptchaResolver\CaptchaAnswerInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
 use PhpCfdi\ImageCaptchaResolver\CaptchaResolverInterface;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 
 final class MockResolver implements CaptchaResolverInterface, Countable
 {
-    /** @var CaptchaAnswerInterface[]|UnableToResolveCaptcha[] */
+    /** @var CaptchaAnswerInterface[]|UnableToResolveCaptchaException[] */
     private $resolveResponses;
 
     /**
      * MockResolver constructor.
      *
-     * @param CaptchaAnswerInterface|UnableToResolveCaptcha ...$resolveResponses
+     * @param CaptchaAnswerInterface|UnableToResolveCaptchaException ...$resolveResponses
      */
     public function __construct(...$resolveResponses)
     {
@@ -33,7 +33,7 @@ final class MockResolver implements CaptchaResolverInterface, Countable
             throw new OutOfRangeException('MockResolver does not have any response to process');
         }
 
-        if ($response instanceof UnableToResolveCaptcha) {
+        if ($response instanceof UnableToResolveCaptchaException) {
             throw $response;
         }
 

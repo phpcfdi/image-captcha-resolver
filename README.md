@@ -55,7 +55,7 @@ y que la imagen del captcha se encuentra como imagen embedida y su contenido en 
 
 use PhpCfdi\ImageCaptchaResolver\CaptchaImage;
 use PhpCfdi\ImageCaptchaResolver\CaptchaResolverInterface;
-use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptcha;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 
 /**
  * @var string $theImgElementSrcAtributte
@@ -66,7 +66,7 @@ $image = CaptchaImage::newFromInlineHtml($theImgElementSrcAtributte);
 
 try {
     $answer = $resolver->resolve($image);
-} catch (UnableToResolveCaptcha $exception) {
+} catch (UnableToResolveCaptchaException $exception) {
     echo 'No se pudo resolver el captcha', PHP_EOL;
     return;
 }
@@ -142,7 +142,48 @@ $resolverConstructed = new CaptchaLocalResolver(
 );
 ```
 
+### Creación de un resolvedor de captchas basado en línea de comandos
+
+La implementación dependerá siempre de la herramienta que se esté utilizando, es probable que fabrique
+su propio punto de entrada a la herramienta para que devuelva el *exit code* correcto y la respuesta.
+
+Esta herramienta podría ser útil en caso de que el captcha se pueda resolver utilizando alguna herramienta
+como [`tesseract`](https://github.com/tesseract-ocr/tesseract).
+
+El siguiente ejemplo supone que tiene la imagen del captcha a resolver en `$image` y que existe un commando
+llamado `my-captcha-breaker` que se le entrega una imagen y devuelve en el último renglón de la salida
+la respuesta del captcha.
+
+```php
+<?php declare(strict_types=1);
+
+use PhpCfdi\ImageCaptchaResolver\CaptchaImageInterface;
+use PhpCfdi\ImageCaptchaResolver\Resolvers\CommandLineResolver;
+use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
+
+/**
+ * @var CaptchaImageInterface $image 
+ */
+
+$resolver = CommandLineResolver::create(explode(' ', 'my-captcha-breaker --in {file} --stdout'));
+
+try {
+    $answer = $resolver->resolve($image);
+} catch (UnableToResolveCaptchaException $exception) {
+    echo 'No se pudo resolver el captcha: ', $exception->getMessage(), PHP_EOL;
+    return;
+}
+
+echo $answer, PHP_EOL;
+```
+
 ## Resolvedores
+
+### Multiresolvedor
+
+El resolvedor `MultiResolver` es en sí mismo un resolvedor que intenta resolver el captcha usando un conjunto
+predefinido de resolvedores. Podría ser útil para intentar resolver utilizando diferentes estrategias
+o reintentando con un mismo resolvedor el número de veces en las que esté incluído.
 
 ### Resolvedores para pruebas
 
@@ -154,7 +195,7 @@ ejecutando el proceso. Solo es útil si puede escribir la respuesta. Si no se re
 en un tiempo predeterminado el resolvedor fallará lo tomará como una respuesta vacía.
 
 Si está haciendo pruebas unitarias, la mejor alternativa es usar el resolvedor `MockResolver`, que se construye
-con respuestas prestablecidas `CaptchaAnswerInterface` o excepciones `UnableToResolveCaptcha` y falla con una
+con respuestas prestablecidas `CaptchaAnswerInterface` o excepciones `UnableToResolveCaptchaException` y falla con una
 excepción `OutOfRangeException` si se le pide una respuesta y ya no tiene más.
 
 ### Nuevos resolvedores

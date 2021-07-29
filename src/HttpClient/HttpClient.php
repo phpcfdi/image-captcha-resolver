@@ -39,7 +39,7 @@ final class HttpClient implements HttpClientInterface
     /**
      * Create the object with discovered PSR http client, PSR request factory and PSR stream factory
      *
-     * @throws UndiscoverableClient
+     * @throws UndiscoverableClientException
      */
     public static function discover(): self
     {
@@ -49,9 +49,11 @@ final class HttpClient implements HttpClientInterface
                 Psr17FactoryDiscovery::findRequestFactory(),
                 Psr17FactoryDiscovery::findStreamFactory()
             );
+            // @codeCoverageIgnoreStart
         } catch (Throwable $exception) {
-            throw new UndiscoverableClient('Cannot discover the HttpClient', $exception);
+            throw new UndiscoverableClientException($exception);
         }
+        // @codeCoverageIgnoreEnd
     }
 
     /**
