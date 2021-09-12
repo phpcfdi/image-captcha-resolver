@@ -290,7 +290,7 @@ y recuerda revisar el archivo de tareas pendientes [TODO][] y el archivo [CHANGE
 
 ## Copyright and License
 
-The `phpcfdi/image-captcha-resolver` library is copyright © [PhpCfdi](https://www.phpcfdi.com)
+The `phpcfdi/image-captcha-resolver` library is copyright © [PhpCfdi](https://www.phpcfdi.com/)
 and licensed for use under the MIT License (MIT). Please see [LICENSE][] for more information.
 
 [contributing]: https://github.com/phpcfdi/image--captcha--resolver/blob/main/CONTRIBUTING.md
