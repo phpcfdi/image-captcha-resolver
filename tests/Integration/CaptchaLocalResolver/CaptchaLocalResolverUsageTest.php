@@ -18,11 +18,11 @@ final class CaptchaLocalResolverUsageTest extends TestCase
     {
         parent::setUp();
 
-        if ('yes' !== $this->getenv('CAPTCHA_LOCAL_RESOLVER_ENABLED') ?? '') {
+        if ('yes' !== $this->getenv('CAPTCHA_LOCAL_RESOLVER_ENABLED')) {
             $this->markTestSkipped('Captcha local resolver tests are not enabled');
         }
 
-        $localResolverUrl = $this->getenv('CAPTCHA_LOCAL_RESOLVER_BASEURL') ?? '';
+        $localResolverUrl = $this->getenv('CAPTCHA_LOCAL_RESOLVER_BASEURL');
         if ('' === $localResolverUrl) {
             $this->fail('Environment CAPTCHA_LOCAL_RESOLVER_BASEURL is not set');
         }

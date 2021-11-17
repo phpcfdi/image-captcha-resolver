@@ -86,7 +86,7 @@ class CaptchaLocalResolverConnector
         }
         $contents = strval($response->getBody());
         $data = json_decode($contents, true);
-        $code = strval($data['code'] ?? '');
+        $code = (is_array($data)) ? strval($data['code'] ?? '') : '';
         if ('' === $code) {
             throw new RuntimeException('Image was sent but service returns empty code');
         }
@@ -118,7 +118,7 @@ class CaptchaLocalResolverConnector
         }
         $contents = strval($response->getBody());
         $data = json_decode($contents, true);
-        return strval($data['answer'] ?? '');
+        return (is_array($data)) ? strval($data['answer'] ?? '') : '';
     }
 
     public function buildUri(string $action): string

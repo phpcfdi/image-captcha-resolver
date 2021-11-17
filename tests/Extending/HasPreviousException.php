@@ -32,8 +32,8 @@ class HasPreviousException extends Constraint
             '%s &%s has previous exception %s &%s',
             get_class($this->exception),
             spl_object_hash($this->exception),
-            get_class($other),
-            spl_object_hash($other),
+            (is_object($other)) ? get_class($other) : gettype($other),
+            (is_object($other)) ? spl_object_hash($other) : '',
         );
     }
 

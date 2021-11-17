@@ -13,7 +13,7 @@ final class AntiCaptchaResolverUsageTest extends TestCase
 {
     public function checkTestIsEnabled(): void
     {
-        if ('yes' !== $this->getenv('ANTI_CAPTCHA_ENABLED') ?? '') {
+        if ('yes' !== $this->getenv('ANTI_CAPTCHA_ENABLED')) {
             $this->markTestSkipped('Anti-captcha resolver tests are not enabled');
         }
     }

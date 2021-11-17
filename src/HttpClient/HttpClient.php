@@ -140,7 +140,12 @@ final class HttpClient implements HttpClientInterface
         return new class($exception) extends RuntimeException implements ClientExceptionInterface {
             public function __construct(Throwable $previous)
             {
-                parent::__construct($previous->getMessage(), $previous->getCode(), $previous);
+                /**
+                 * @see https://github.com/phpstan/phpstan-src/pull/767
+                 * @var int|string $code
+                 */
+                $code = $previous->getCode();
+                parent::__construct($previous->getMessage(), (int) $code, $previous);
             }
         };
     }

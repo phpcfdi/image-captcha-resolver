@@ -30,7 +30,7 @@ final class CaptchaAnswer implements JsonSerializable, CaptchaAnswerInterface
     public function equalsTo($value): bool
     {
         try {
-            return $this->value === (string) $value;
+            return $this->value === strval($value);
         } catch (Throwable $ex) {
             return false;
         }

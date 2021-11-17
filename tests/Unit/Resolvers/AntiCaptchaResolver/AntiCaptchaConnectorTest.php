@@ -12,6 +12,7 @@ use PhpCfdi\ImageCaptchaResolver\Resolvers\AntiCaptchaResolver\AntiCaptchaConnec
 use PhpCfdi\ImageCaptchaResolver\Tests\Extending\AssertHasPreviousExceptionTrait;
 use PhpCfdi\ImageCaptchaResolver\Tests\HttpTestCase;
 use RuntimeException;
+use stdClass;
 
 final class AntiCaptchaConnectorTest extends HttpTestCase
 {
@@ -55,6 +56,7 @@ final class AntiCaptchaConnectorTest extends HttpTestCase
         $this->assertSame($expectedTaskId, $taskId);
 
         $lastRequest = $phpHttpMockClient->getLastRequest();
+        /** @var stdClass $sentValues */
         $sentValues = json_decode((string) $lastRequest->getBody());
         $this->assertSame($this->clientKey, $sentValues->clientKey ?? '');
         $this->assertSame('ImageToTextTask', $sentValues->task->type ?? '');

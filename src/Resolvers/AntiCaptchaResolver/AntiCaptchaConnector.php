@@ -112,6 +112,9 @@ class AntiCaptchaConnector
         }
 
         $result = json_decode((string) $response->getBody());
+        if (! $result instanceof stdClass) {
+            $result = (object) ['errorId' => 1, 'errorDescription' => 'Response is not a JSON object'];
+        }
         $errorId = intval($result->errorId ?? 0);
         if ($errorId > 0) {
             throw new RuntimeException(
