@@ -43,8 +43,8 @@ final class CommandLineResolver implements CaptchaResolverInterface
             throw new LogicException('Command cannot be "{file}"');
         }
         $this->command = $command;
-        $this->answerBuilder = $answerBuilder ?? new CommandLineResolver\LastLineAnswerBuilder();
-        $this->processRunner = $processRunner ?? new CommandLineResolver\SymfonyProcessRunner();
+        $this->answerBuilder = $answerBuilder;
+        $this->processRunner = $processRunner;
     }
 
     /**

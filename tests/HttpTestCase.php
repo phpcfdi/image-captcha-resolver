@@ -42,11 +42,7 @@ abstract class HttpTestCase extends TestCase
 
     protected function createHttpClient(ClientInterface $client): HttpClientInterface
     {
-        return new HttpClient(
-            $client ?? $this->createPhpHttpMockClient(),
-            $this->requestFactory,
-            $this->streamFactory
-        );
+        return new HttpClient($client, $this->requestFactory, $this->streamFactory);
     }
 
     /**
