@@ -21,6 +21,7 @@ detectado por PHPStan.
 - Se actualiza el año del archivo de licencia.
 - Se utiliza un nuevo estándar de estilo de código basado en PSR-12, como los demás proyectos de *PhpCfdi*.
 - Se agrega la integración con SonarCloud.
+- Se elimina la integración con Scrutinizer CI. ¡Gracias Scrutinizer!
 
 ## Versión 0.2.1 2021-11-16 *Happy birthday Noni*
 
