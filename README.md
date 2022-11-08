@@ -313,7 +313,7 @@ and licensed for use under the MIT License (MIT). Please see [LICENSE][] for mor
 [violations]: https://sonarcloud.io/project/issues?id=phpcfdi_image-captcha-resolver&resolved=false
 [downloads]: https://packagist.org/packages/phpcfdi/image-captcha-resolver
 
-[badge-source]: https://img.shields.io/badge/source-phpcfdi/image--captcha--resolver?logo=github
+[badge-source]: https://img.shields.io/badge/source-phpcfdi/image--captcha--resolver-blue?logo=github
 [badge-discord]: https://img.shields.io/discord/459860554090283019?logo=discord
 [badge-php-version]: https://img.shields.io/packagist/php-v/phpcfdi/image-captcha-resolver?logo=php
 [badge-release]: https://img.shields.io/github/release/phpcfdi/image-captcha-resolver?logo=git
