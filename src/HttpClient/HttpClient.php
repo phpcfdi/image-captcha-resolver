@@ -137,7 +137,7 @@ final class HttpClient implements HttpClientInterface
 
     private function convertThrowableToClientExceptionInterface(Throwable $exception): ClientExceptionInterface
     {
-        return new class($exception) extends RuntimeException implements ClientExceptionInterface {
+        return new class ($exception) extends RuntimeException implements ClientExceptionInterface {
             public function __construct(Throwable $previous)
             {
                 /**

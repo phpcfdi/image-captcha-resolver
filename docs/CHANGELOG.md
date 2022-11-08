@@ -3,7 +3,23 @@
 Usamos [Versionado Semántico 2.0.0](SEMVER.md) por lo que puedes usar esta librería sin temor a romper tu aplicación.
 
 Pueden aparecer cambios no liberados que se integran a la rama principal, pero no ameritan una nueva liberación de
-versión, aunque sí su incorporación en la rama principal de trabajo. Generalmente se tratan de cambios en el desarrollo.
+versión, aunque sí su incorporación en la rama principal de trabajo. Generalmente, se tratan de cambios en el desarrollo.
+
+## Versión 0.2.2 2022-11-16 *Happy pre-birthday Noni*
+
+Este es una liberación de mantenimiento, el cambio más importante es la corrección de un posible problema
+detectado por PHPStan.
+
+### Cambios en entorno de desarrollo
+
+- Se utiliza Phive en lugar del script `install-development-tools` para mantener las librerías de desarrollo.
+- Se corrige el nombre del grupo de mantenedores en GitHub.
+- En Github en el flujo de integración continua se actualiza para:
+  - Incluir PHP 8.0, PHP 8.1 y PHP 8.2 a las pruebas.
+  - Se divide el proceso de contrucción en varios pasos.
+  - Se actualizan las acciones de GitHub a la versión 3.
+- Se actualiza el año del archivo de licencia.
+- Se utiliza un nuevo estándar de estilo de código basado en PSR-12, como los demás proyectos de *PhpCfdi*.
 
 ## Versión 0.2.1 2021-11-16 *Happy birthday Noni*
 

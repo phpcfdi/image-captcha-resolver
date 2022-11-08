@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phive xmlns="https://phar.io/phive">
+  <phar name="phpcs" version="^3.7.1" location="./tools/phpcs" copy="false" installed="3.7.1"/>
+  <phar name="phpcbf" version="^3.7.1" location="./tools/phpcbf" copy="false" installed="3.7.1"/>
+  <phar name="php-cs-fixer" version="^3.13.0" location="./tools/php-cs-fixer" copy="false" installed="3.13.0"/>
+  <phar name="phpstan" version="^1.9.1" location="./tools/phpstan" copy="false" installed="1.9.1"/>
+  <phar name="composer-normalize" version="^2.28.3" location="./tools/composer-normalize" copy="false" installed="2.28.3"/>
+</phive>
