@@ -1,11 +1,15 @@
 # phpcfdi/image-captcha-resolver
 
 [![Source Code][badge-source]][source]
+[![Packagist PHP Version Support][badge-php-version]][php-version]
+[![Discord][badge-discord]][discord]
 [![Latest Version][badge-release]][release]
 [![Software License][badge-license]][license]
 [![Build Status][badge-build]][build]
-[![Scrutinizer][badge-quality]][quality]
-[![Coverage Status][badge-coverage]][coverage]
+[![Reliability][badge-reliability]][reliability]
+[![Maintainability][badge-maintainability]][maintainability]
+[![Code Coverage][badge-coverage]][coverage]
+[![Violations][badge-violations]][violations]
 [![Total Downloads][badge-downloads]][downloads]
 
 > Conectores para resolver captchas de imágenes
@@ -293,22 +297,30 @@ y recuerda revisar el archivo de tareas pendientes [TODO][] y el archivo [CHANGE
 The `phpcfdi/image-captcha-resolver` library is copyright © [PhpCfdi](https://www.phpcfdi.com/)
 and licensed for use under the MIT License (MIT). Please see [LICENSE][] for more information.
 
-[contributing]: https://github.com/phpcfdi/image--captcha--resolver/blob/main/CONTRIBUTING.md
+[contributing]: https://github.com/phpcfdi/image-captcha-resolver/blob/main/CONTRIBUTING.md
 [changelog]: https://github.com/phpcfdi/image-captcha-resolver/blob/main/docs/CHANGELOG.md
 [todo]: https://github.com/phpcfdi/image-captcha-resolver/blob/main/docs/TODO.md
 
 [source]: https://github.com/phpcfdi/image-captcha-resolver
+[php-version]: https://packagist.org/packages/phpcfdi/image-captcha-resolver
+[discord]: https://discord.gg/aFGYXvX
 [release]: https://github.com/phpcfdi/image-captcha-resolver/releases
 [license]: https://github.com/phpcfdi/image-captcha-resolver/blob/main/LICENSE
 [build]: https://github.com/phpcfdi/image-captcha-resolver/actions/workflows/build.yml?query=branch:main
-[quality]: https://scrutinizer-ci.com/g/phpcfdi/image-captcha-resolver/
-[coverage]: https://scrutinizer-ci.com/g/phpcfdi/image-captcha-resolver/code-structure/main/code-coverage/src
+[reliability]:https://sonarcloud.io/component_measures?id=phpcfdi_image-captcha-resolver&metric=Reliability
+[maintainability]: https://sonarcloud.io/component_measures?id=phpcfdi_image-captcha-resolver&metric=Maintainability
+[coverage]: https://sonarcloud.io/component_measures?id=phpcfdi_image-captcha-resolver&metric=Coverage
+[violations]: https://sonarcloud.io/project/issues?id=phpcfdi_image-captcha-resolver&resolved=false
 [downloads]: https://packagist.org/packages/phpcfdi/image-captcha-resolver
 
-[badge-source]: http://img.shields.io/badge/source-phpcfdi/image--captcha--resolver-blue?style=flat-square
-[badge-release]: https://img.shields.io/github/release/phpcfdi/image-captcha-resolver?style=flat-square
-[badge-license]: https://img.shields.io/github/license/phpcfdi/image-captcha-resolver?style=flat-square
-[badge-build]: https://img.shields.io/github/workflow/status/phpcfdi/image-captcha-resolver/build/main?style=flat-square
-[badge-quality]: https://img.shields.io/scrutinizer/g/phpcfdi/image-captcha-resolver/main?style=flat-square
-[badge-coverage]: https://img.shields.io/scrutinizer/coverage/g/phpcfdi/image-captcha-resolver/main?style=flat-square
-[badge-downloads]: https://img.shields.io/packagist/dt/phpcfdi/image-captcha-resolver?style=flat-square
+[badge-source]: https://img.shields.io/badge/source-phpcfdi/image--captcha--resolver?logo=github
+[badge-discord]: https://img.shields.io/discord/459860554090283019?logo=discord
+[badge-php-version]: https://img.shields.io/packagist/php-v/phpcfdi/image-captcha-resolver?logo=php
+[badge-release]: https://img.shields.io/github/release/phpcfdi/image-captcha-resolver?logo=git
+[badge-license]: https://img.shields.io/github/license/phpcfdi/image-captcha-resolver?logo=open-source-initiative
+[badge-build]: https://img.shields.io/github/workflow/status/phpcfdi/image-captcha-resolver/build/main?logo=github-actions
+[badge-reliability]: https://sonarcloud.io/api/project_badges/measure?project=phpcfdi_image-captcha-resolver&metric=reliability_rating
+[badge-maintainability]: https://sonarcloud.io/api/project_badges/measure?project=phpcfdi_image-captcha-resolver&metric=sqale_rating
+[badge-coverage]: https://img.shields.io/sonar/coverage/phpcfdi_image-captcha-resolver/main?logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io
+[badge-violations]: https://img.shields.io/sonar/violations/phpcfdi_image-captcha-resolver/main?format=long&logo=sonarcloud&server=https%3A%2F%2Fsonarcloud.io
+[badge-downloads]: https://img.shields.io/packagist/dt/phpcfdi/image-captcha-resolver?logo=packagist
