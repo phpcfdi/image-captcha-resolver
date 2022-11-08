@@ -13,6 +13,7 @@ detectado por PHPStan.
 ### Cambios en entorno de desarrollo
 
 - Se utiliza Phive en lugar del script `install-development-tools` para mantener las librerías de desarrollo.
+- Se corrige el nombre del grupo de mantenedores en GitHub.
 
 ## Versión 0.2.1 2021-11-16 *Happy birthday Noni*
 
