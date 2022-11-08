@@ -14,6 +14,10 @@ detectado por PHPStan.
 
 - Se utiliza Phive en lugar del script `install-development-tools` para mantener las librerías de desarrollo.
 - Se corrige el nombre del grupo de mantenedores en GitHub.
+- En Github en el flujo de integración continua se actualiza para:
+  - Incluir PHP 8.0, PHP 8.1 y PHP 8.2 a las pruebas.
+  - Se divide el proceso de contrucción en varios pasos.
+  - Se actualizan las acciones de GitHub a la versión 3.
 
 ## Versión 0.2.1 2021-11-16 *Happy birthday Noni*
 
