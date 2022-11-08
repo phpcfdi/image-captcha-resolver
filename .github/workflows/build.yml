@@ -12,6 +12,23 @@ on:
 
 jobs:
 
+  composer-normalize:
+    name: Composer normalization
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2 # see https://github.com/marketplace/actions/setup-php-action
+        with:
+          php-version: '8.0'
+          coverage: none
+          tools: composer-normalize
+        env:
+          fail-fast: true
+      - name: Composer normalize
+        run: composer-normalize
+
   phpcs:
     name: Code Style (phpcs)
     runs-on: "ubuntu-latest"
@@ -73,34 +90,6 @@ jobs:
         run: composer upgrade --no-interaction --no-progress --prefer-dist
       - name: PHPStan
         run: phpstan analyse --no-progress --verbose
-
-  psalm:
-    name: Code analysis (psalm)
-    runs-on: "ubuntu-latest"
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.0'
-          coverage: none
-          tools: composer:v2, cs2pr, psalm
-        env:
-          fail-fast: true
-      - name: Get composer cache directory
-        id: composer-cache
-        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.composer-cache.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
-          restore-keys: ${{ runner.os }}-composer-
-      - name: Install project dependencies
-        run: composer upgrade --no-interaction --no-progress --prefer-dist
-      - name: Psalm
-        run: psalm --no-progress --output-format=github
 
   tests:
     name: Tests on PHP ${{ matrix.php-versions }}
