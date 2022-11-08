@@ -5,6 +5,11 @@ Usamos [Versionado Semántico 2.0.0](SEMVER.md) por lo que puedes usar esta libr
 Pueden aparecer cambios no liberados que se integran a la rama principal, pero no ameritan una nueva liberación de
 versión, aunque sí su incorporación en la rama principal de trabajo. Generalmente se tratan de cambios en el desarrollo.
 
+## Versión 0.2.2 2022-11-16 *Happy pre-birthday Noni*
+
+Este es una liberación de mantenimiento, el cambio más importante es la corrección de un posible problema
+detectado por PHPStan.
+
 ## Versión 0.2.1 2021-11-16 *Happy birthday Noni*
 
 La versión más reciente de PHPStan `phpstan/phpstan:1.1.2` encontró algunos puntos de mejora

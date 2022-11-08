@@ -63,7 +63,7 @@ final class CaptchaImage implements CaptchaImageInterface
             throw new InvalidArgumentException('Image is not an embeded base64 image');
         }
 
-        return self::newFromBase64(preg_replace('#\s#', '', $parts['image']));
+        return self::newFromBase64((string) preg_replace('#\s#', '', $parts['image']));
     }
 
     private static function finfo(): finfo
