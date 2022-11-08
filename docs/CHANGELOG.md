@@ -19,6 +19,7 @@ detectado por PHPStan.
   - Se divide el proceso de contrucción en varios pasos.
   - Se actualizan las acciones de GitHub a la versión 3.
 - Se actualiza el año del archivo de licencia.
+- Se utiliza un nuevo estándar de estilo de código basado en PSR-12, como los demás proyectos de *PhpCfdi*.
 
 ## Versión 0.2.1 2021-11-16 *Happy birthday Noni*
 

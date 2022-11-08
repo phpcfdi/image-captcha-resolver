@@ -108,7 +108,8 @@ class CaptchaLocalResolverConnector
         try {
             $response = $this->getHttpClient()->postJson($uri, [], (object)['code' => $code]);
         } catch (HttpException $exception) {
-            if ($exception->hasResponse()
+            if (
+                $exception->hasResponse()
                 && 404 === $exception->getResponse()->getStatusCode()
             ) {
                 throw new RuntimeException("Unable to retrieve answer for non-existent code $code", 0, $exception);
