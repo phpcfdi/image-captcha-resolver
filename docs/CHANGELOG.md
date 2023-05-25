@@ -5,6 +5,23 @@ Usamos [Versionado Semántico 2.0.0](SEMVER.md) por lo que puedes usar esta libr
 Pueden aparecer cambios no liberados que se integran a la rama principal, pero no ameritan una nueva liberación de
 versión, aunque sí su incorporación en la rama principal de trabajo. Generalmente, se tratan de cambios en el desarrollo.
 
+## Versión 0.2.3 2023-05-25
+
+- Se actualizó la dependencia `psr/http-message` para permitir las versiones `^1.1` o `^2.0`.
+- Se actualizó el año de la licencia.
+- Se corrigió la insignia de la construcción del proyecto.
+- Se corrigió la insignia de la construcción del proyecto.
+
+Se hicieron varios cambios de mantenimiento al entorno de desarrollo:
+
+- En los flujos de trabajo de GitHub:
+  - Los trabajos se ejecutan en PHP 8.2.
+  - Se cambia la directiva `::set-output` por `$GITHUB_OUTPUT`.
+  - Se elimina el requerimiento de `composer` en los trabajos donde no es necesario.
+- La ejecución de `composer-normalize` se condiciona a una versión mínima de PHP 8.0.
+- La ejecución de `php-cs-fixer` se condiciona a una versión mínima de PHP 7.4.
+- Se actualizaron las herramientas de desarrollo.
+
 ## Versión 0.2.2 2022-11-16 *Happy pre-birthday Noni*
 
 Este es una liberación de mantenimiento, el cambio más importante es la corrección de un posible problema
