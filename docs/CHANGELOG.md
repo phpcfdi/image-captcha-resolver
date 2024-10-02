@@ -5,11 +5,28 @@ Usamos [Versionado Semántico 2.0.0](SEMVER.md) por lo que puedes usar esta libr
 Pueden aparecer cambios no liberados que se integran a la rama principal, pero no ameritan una nueva liberación de
 versión, aunque sí su incorporación en la rama principal de trabajo. Generalmente, se tratan de cambios en el desarrollo.
 
+## Versión 0.2.4 2023-05-25
+
+- Se agrega la compatibilidad de `symfony/process` a las versiones `6.x` y `7.x`.
+- Se actualizó el año de la licencia.
+
+Cambios de mantenimiento al entorno de desarrollo:
+
+- Se agrega el archivo `.editorconfig` para mejorar la compatibilidad.
+- Se excluye `tests/_files` de la detección de lenguaje de GitHub.
+- Se sustituye `function_typehint_space` con `type_declaration_spaces` en `php-cs-fixer`.
+- Se corrigen las exclusiones de archivos para SonarCloud.
+- En los flujos de trabajo de GitHub:
+  - Se agrega PHP 8.3 a la matrix de pruebas.
+  - Los trabajos se ejecutan en PHP 8.3.
+  - Se cambia la variable `matrix.php-versions` por `matrix.php-version`.
+  - Se permite la ejecución de los flujos de trabajo manualmente.
+- Se actualizaron las herramientas de desarrollo.
+
 ## Versión 0.2.3 2023-05-25
 
 - Se actualizó la dependencia `psr/http-message` para permitir las versiones `^1.1` o `^2.0`.
 - Se actualizó el año de la licencia.
-- Se corrigió la insignia de la construcción del proyecto.
 - Se corrigió la insignia de la construcción del proyecto.
 
 Se hicieron varios cambios de mantenimiento al entorno de desarrollo:
