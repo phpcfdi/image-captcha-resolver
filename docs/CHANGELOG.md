@@ -10,7 +10,6 @@ versión, aunque sí su incorporación en la rama principal de trabajo. Generalm
 - Se actualizó la dependencia `psr/http-message` para permitir las versiones `^1.1` o `^2.0`.
 - Se actualizó el año de la licencia.
 - Se corrigió la insignia de la construcción del proyecto.
-- Se corrigió la insignia de la construcción del proyecto.
 
 Se hicieron varios cambios de mantenimiento al entorno de desarrollo:
 
