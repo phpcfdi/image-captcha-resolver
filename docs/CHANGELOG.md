@@ -12,6 +12,8 @@ versión, aunque sí su incorporación en la rama principal de trabajo. Generalm
 
 Cambios de mantenimiento al entorno de desarrollo:
 
+- Se remueve el archivo `tests/.env` que solía tener la llave de la API de AntiCaptcha.
+- Ignorar `tests/.env` de Git.
 - Se agrega el archivo `.editorconfig` para mejorar la compatibilidad.
 - Se excluye `tests/_files` de la detección de lenguaje de GitHub.
 - Se sustituye `function_typehint_space` con `type_declaration_spaces` en `php-cs-fixer`.
