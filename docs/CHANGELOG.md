@@ -5,13 +5,15 @@ Usamos [Versionado Semántico 2.0.0](SEMVER.md) por lo que puedes usar esta libr
 Pueden aparecer cambios no liberados que se integran a la rama principal, pero no ameritan una nueva liberación de
 versión, aunque sí su incorporación en la rama principal de trabajo. Generalmente, se tratan de cambios en el desarrollo.
 
-## Versión 0.2.4 2023-05-25
+## Versión 0.2.4 2024-10-03
 
 - Se agrega la compatibilidad de `symfony/process` a las versiones `6.x` y `7.x`.
 - Se actualizó el año de la licencia.
 
 Cambios de mantenimiento al entorno de desarrollo:
 
+- Se remueve el archivo `tests/.env` que solía tener la llave de la API de AntiCaptcha.
+- Ignorar `tests/.env` de Git.
 - Se agrega el archivo `.editorconfig` para mejorar la compatibilidad.
 - Se excluye `tests/_files` de la detección de lenguaje de GitHub.
 - Se sustituye `function_typehint_space` con `type_declaration_spaces` en `php-cs-fixer`.
