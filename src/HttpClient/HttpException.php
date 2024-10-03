@@ -35,7 +35,7 @@ class HttpException extends RuntimeException
 
     public function hasResponse(): bool
     {
-        return (null !== $this->response);
+        return null !== $this->response;
     }
 
     public function getResponse(): ResponseInterface
