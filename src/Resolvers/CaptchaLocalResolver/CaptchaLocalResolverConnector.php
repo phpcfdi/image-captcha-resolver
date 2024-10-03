@@ -78,7 +78,7 @@ class CaptchaLocalResolverConnector
      */
     public function sendImage(CaptchaImageInterface $image): string
     {
-        $uri = $this->buildUri('/send-image'); // TODO
+        $uri = $this->buildUri('/send-image');
         try {
             $response = $this->getHttpClient()->postJson($uri, [], (object)['image' => $image->asBase64()]);
         } catch (HttpException $exception) {
