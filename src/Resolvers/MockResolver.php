@@ -47,6 +47,6 @@ final class MockResolver implements CaptchaResolverInterface, Countable
 
     public function isEmpty(): bool
     {
-        return ([] === $this->resolveResponses);
+        return [] === $this->resolveResponses;
     }
 }
