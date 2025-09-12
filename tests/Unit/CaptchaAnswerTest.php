@@ -49,7 +49,6 @@ final class CaptchaAnswerTest extends TestCase
         $this->assertTrue($answer->equalsTo(new CaptchaAnswer($value)));
 
         $this->assertFalse($answer->equalsTo($other));
-        $this->assertFalse($answer->equalsTo($other));
         $this->assertFalse($answer->equalsTo(new CaptchaAnswer($other)));
 
         /** @phpstan-ignore-next-line send object type other than annotation */

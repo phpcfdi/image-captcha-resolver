@@ -57,7 +57,7 @@ final class CaptchaImageTest extends TestCase
     }
 
     /** @return array<string, array{string, string}> */
-    public function providerNewFromBase64Malformed(): array
+    public static function providerNewFromBase64Malformed(): array
     {
         return [
             'empty' => ['', 'The captcha image is empty'],
@@ -75,9 +75,9 @@ final class CaptchaImageTest extends TestCase
     }
 
     /** @return array<string, array{string}> */
-    public function providerNewFromInlineImageMalformed(): array
+    public static function providerNewFromInlineImageMalformed(): array
     {
-        $image = CaptchaImage::newFromFile($this->filePath('red-pixel.gif'));
+        $image = CaptchaImage::newFromFile(self::filePath('red-pixel.gif'));
         return [
             'empty' => [''],
             'no data part' => ["{$image->getMimeType()};base64,{$image->asBase64()}"],

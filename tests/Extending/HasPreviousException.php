@@ -22,7 +22,7 @@ class HasPreviousException extends Constraint
         );
     }
 
-    protected function failureDescription($other): string
+    protected function failureDescription(mixed $other): string
     {
         return sprintf(
             '%s &%s has previous exception %s &%s',
