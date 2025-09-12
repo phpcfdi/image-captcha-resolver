@@ -30,7 +30,7 @@ final class CaptchaAnswer implements JsonSerializable, CaptchaAnswerInterface
     {
         try {
             return $this->value === strval($value);
-        } catch (Throwable $ex) {
+        } catch (Throwable) {
             return false;
         }
     }

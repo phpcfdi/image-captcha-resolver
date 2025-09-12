@@ -22,8 +22,6 @@ class AntiCaptchaConnector
 {
     public const BASE_URL = 'https://api.anti-captcha.com/';
 
-    private string $clientKey;
-
     private HttpClientInterface $httpClient;
 
     /**
@@ -31,9 +29,8 @@ class AntiCaptchaConnector
      *
      * @throws UndiscoverableClientException
      */
-    public function __construct(string $clientKey, ?HttpClientInterface $httpClient = null)
+    public function __construct(private string $clientKey, ?HttpClientInterface $httpClient = null)
     {
-        $this->clientKey = $clientKey;
         $this->httpClient = $httpClient ?? HttpClient::discover();
     }
 

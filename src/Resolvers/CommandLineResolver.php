@@ -18,10 +18,6 @@ final class CommandLineResolver implements CaptchaResolverInterface
     /** @var string[] */
     private array $command;
 
-    private CommandLineResolver\AnswerBuilderInterface $answerBuilder;
-
-    private CommandLineResolver\ProcessRunnerInterface $processRunner;
-
     /**
      * CommandLineResolver constructor.
      *
@@ -29,8 +25,8 @@ final class CommandLineResolver implements CaptchaResolverInterface
      */
     public function __construct(
         array $command,
-        CommandLineResolver\AnswerBuilderInterface $answerBuilder,
-        CommandLineResolver\ProcessRunnerInterface $processRunner
+        private CommandLineResolver\AnswerBuilderInterface $answerBuilder,
+        private CommandLineResolver\ProcessRunnerInterface $processRunner,
     ) {
         if ([] === $command) {
             throw new LogicException('Invalid command argument');
@@ -39,8 +35,6 @@ final class CommandLineResolver implements CaptchaResolverInterface
             throw new LogicException('Command cannot be "{file}"');
         }
         $this->command = $command;
-        $this->answerBuilder = $answerBuilder;
-        $this->processRunner = $processRunner;
     }
 
     /**
@@ -49,7 +43,7 @@ final class CommandLineResolver implements CaptchaResolverInterface
     public static function create(
         array $command,
         ?CommandLineResolver\AnswerBuilderInterface $answerBuilder = null,
-        ?CommandLineResolver\ProcessRunnerInterface $processRunner = null
+        ?CommandLineResolver\ProcessRunnerInterface $processRunner = null,
     ): self {
         return new self(
             $command,

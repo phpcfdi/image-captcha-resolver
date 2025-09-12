@@ -30,7 +30,7 @@ final class CaptchaLocalResolverUsageTest extends TestCase
         $port = intval(parse_url($localResolverUrl, PHP_URL_PORT) ?: 80);
         try {
             $this->checkPortIsOpen($host, $port);
-        } catch (RuntimeException $exception) {
+        } catch (RuntimeException) {
             $this->markTestSkipped("Captcha local resolver service is not open at $host:$port");
         }
 

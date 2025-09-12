@@ -11,8 +11,7 @@ class FakeExpiredTimer implements TimerInterface
     /** @var int */
     public $expireAfter;
 
-    /** @var int */
-    private $waitCount = 0;
+    private int|float $waitCount = 0;
 
     public function __construct(int $expireAfter = 0)
     {

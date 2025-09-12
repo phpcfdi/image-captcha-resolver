@@ -6,20 +6,11 @@ namespace PhpCfdi\ImageCaptchaResolver\Timer;
 
 final class Timer implements TimerInterface
 {
-    private int $initialSeconds;
-
-    private int $timeoutSeconds;
-
-    private int $waitMilliseconds;
-
     /** @var float */
     private $untilTime = 0;
 
-    public function __construct(int $initialSeconds, int $timeoutSeconds, int $waitMilliseconds)
+    public function __construct(private int $initialSeconds, private int $timeoutSeconds, private int $waitMilliseconds)
     {
-        $this->initialSeconds = $initialSeconds;
-        $this->timeoutSeconds = $timeoutSeconds;
-        $this->waitMilliseconds = $waitMilliseconds;
     }
 
     public function getInitialSeconds(): int

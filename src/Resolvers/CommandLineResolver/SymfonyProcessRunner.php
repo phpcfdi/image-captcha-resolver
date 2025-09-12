@@ -15,8 +15,7 @@ class SymfonyProcessRunner implements ProcessRunnerInterface
 {
     public const DEFAULT_TIMEOUT = 60;
 
-    /** @var float */
-    private $timeoutSeconds;
+    private int|float $timeoutSeconds;
 
     public function __construct(float $timeoutSeconds = self::DEFAULT_TIMEOUT)
     {

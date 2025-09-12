@@ -24,16 +24,8 @@ final class AntiCaptchaResolver implements CaptchaResolverInterface
 
     public const DEFAULT_WAIT = 2000;
 
-    private AntiCaptchaConnector $connector;
-
-    private TimerInterface $timer;
-
-    public function __construct(
-        AntiCaptchaConnector $connector,
-        TimerInterface $timer
-    ) {
-        $this->connector = $connector;
-        $this->timer = $timer;
+    public function __construct(private AntiCaptchaConnector $connector, private TimerInterface $timer)
+    {
     }
 
     public function getConnector(): AntiCaptchaConnector
@@ -55,7 +47,7 @@ final class AntiCaptchaResolver implements CaptchaResolverInterface
         string $clientKey,
         int $initialWaitSeconds = self::DEFAULT_INITIAL_WAIT,
         int $timeoutSeconds = self::DEFAULT_TIMEOUT,
-        int $waitMilliseconds = self::DEFAULT_WAIT
+        int $waitMilliseconds = self::DEFAULT_WAIT,
     ): self {
         return new self(
             new AntiCaptchaConnector($clientKey),

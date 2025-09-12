@@ -33,7 +33,7 @@ final class CaptchaImage implements CaptchaImageInterface
         }
 
         $mimeType = $this->finfo()->buffer($binary, FILEINFO_MIME_TYPE) ?: '';
-        if ('image/' !== substr($mimeType, 0, 6)) {
+        if (! str_starts_with($mimeType, 'image/')) {
             throw new InvalidArgumentException('The captcha image is not an image');
         }
 

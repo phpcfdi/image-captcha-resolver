@@ -22,16 +22,8 @@ class CaptchaLocalResolver implements CaptchaResolverInterface
 
     public const DEFAULT_WAIT = 500;
 
-    private CaptchaLocalResolverConnector $connector;
-
-    private TimerInterface $timer;
-
-    public function __construct(
-        CaptchaLocalResolverConnector $connector,
-        TimerInterface $timer
-    ) {
-        $this->connector = $connector;
-        $this->timer = $timer;
+    public function __construct(private CaptchaLocalResolverConnector $connector, private TimerInterface $timer)
+    {
     }
 
     /**
@@ -41,7 +33,7 @@ class CaptchaLocalResolver implements CaptchaResolverInterface
         string $baseUrl,
         int $initialWaitSeconds = self::DEFAULT_INITIAL_WAIT,
         int $timeoutSeconds = self::DEFAULT_TIMEOUT,
-        int $sleepMilliseconds = self::DEFAULT_WAIT
+        int $sleepMilliseconds = self::DEFAULT_WAIT,
     ): self {
         return new self(
             new CaptchaLocalResolverConnector($baseUrl),

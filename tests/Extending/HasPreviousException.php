@@ -9,18 +9,15 @@ use Throwable;
 
 class HasPreviousException extends Constraint
 {
-    private Throwable $exception;
-
-    public function __construct(Throwable $exception)
+    public function __construct(private Throwable $exception)
     {
-        $this->exception = $exception;
     }
 
     public function toString(): string
     {
         return sprintf(
             ' is part of previous exception chain of %s &%s',
-            get_class($this->exception),
+            $this->exception::class,
             spl_object_hash($this->exception),
         );
     }
@@ -29,9 +26,9 @@ class HasPreviousException extends Constraint
     {
         return sprintf(
             '%s &%s has previous exception %s &%s',
-            get_class($this->exception),
+            $this->exception::class,
             spl_object_hash($this->exception),
-            (is_object($other)) ? get_class($other) : gettype($other),
+            get_debug_type($other),
             (is_object($other)) ? spl_object_hash($other) : '',
         );
     }

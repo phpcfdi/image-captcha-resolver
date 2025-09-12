@@ -12,7 +12,7 @@ trait AssertHasPreviousExceptionTrait
     public static function assertHasPreviousException(
         Throwable $expectedException,
         Throwable $exception,
-        string $message = ''
+        string $message = '',
     ): void {
         Assert::assertThat(
             $expectedException,

@@ -26,13 +26,11 @@ class ConsoleResolver implements CaptchaResolverInterface
 
     private string $captchaOutputFile;
 
-    /** @var float|int */
-    private $waitForAnswerSeconds;
-
-    public function __construct(string $captchaOutputFile = '', float $waitForAnswerSeconds = self::DEFAULT_WAIT)
-    {
+    public function __construct(
+        string $captchaOutputFile = '',
+        private float|int $waitForAnswerSeconds = self::DEFAULT_WAIT,
+    ) {
         $this->captchaOutputFile = $captchaOutputFile ?: (getcwd() . '/captcha.png');
-        $this->waitForAnswerSeconds = $waitForAnswerSeconds;
     }
 
     public function resolve(CaptchaImageInterface $image): CaptchaAnswerInterface
