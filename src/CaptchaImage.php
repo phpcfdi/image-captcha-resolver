@@ -6,6 +6,7 @@ namespace PhpCfdi\ImageCaptchaResolver;
 
 use finfo;
 use InvalidArgumentException;
+use LogicException;
 
 final class CaptchaImage implements CaptchaImageInterface
 {
@@ -72,6 +73,9 @@ final class CaptchaImage implements CaptchaImageInterface
         static $finfo = null;
         if (null === $finfo) {
             $finfo = new finfo(); // @codeCoverageIgnore
+        }
+        if (! $finfo instanceof finfo) {
+            throw new LogicException('Unable to create a finfo instance.');
         }
         return $finfo;
     }
