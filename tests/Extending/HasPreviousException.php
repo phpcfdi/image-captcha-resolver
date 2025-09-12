@@ -38,7 +38,6 @@ class HasPreviousException extends Constraint
 
     /**
      * @param Throwable $other
-     * @return bool
      */
     protected function matches($other): bool
     {

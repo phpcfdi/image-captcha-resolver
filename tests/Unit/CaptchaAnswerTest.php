@@ -28,7 +28,6 @@ final class CaptchaAnswerTest extends TestCase
     }
 
     /**
-     * @param string $value
      * @testWith [""]
      *           ["\n"]
      */

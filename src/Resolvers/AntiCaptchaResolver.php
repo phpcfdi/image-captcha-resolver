@@ -49,11 +49,6 @@ final class AntiCaptchaResolver implements CaptchaResolverInterface
     /**
      * Factory method with defaults
      *
-     * @param string $clientKey
-     * @param int $initialWaitSeconds
-     * @param int $timeoutSeconds
-     * @param int $waitMilliseconds
-     * @return self
      * @throws UndiscoverableClientException
      */
     public static function create(

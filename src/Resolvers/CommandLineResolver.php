@@ -26,8 +26,6 @@ final class CommandLineResolver implements CaptchaResolverInterface
      * CommandLineResolver constructor.
      *
      * @param string[] $command
-     * @param CommandLineResolver\AnswerBuilderInterface $answerBuilder
-     * @param CommandLineResolver\ProcessRunnerInterface $processRunner
      */
     public function __construct(
         array $command,
@@ -47,9 +45,6 @@ final class CommandLineResolver implements CaptchaResolverInterface
 
     /**
      * @param string[] $command
-     * @param CommandLineResolver\AnswerBuilderInterface|null $answerBuilder
-     * @param CommandLineResolver\ProcessRunnerInterface|null $processRunner
-     * @return static
      */
     public static function create(
         array $command,
@@ -102,8 +97,6 @@ final class CommandLineResolver implements CaptchaResolverInterface
     }
 
     /**
-     * @param CaptchaImageInterface $image
-     * @return CaptchaAnswerInterface
      * @throws RuntimeException
      */
     private function realResolve(CaptchaImageInterface $image): CaptchaAnswerInterface

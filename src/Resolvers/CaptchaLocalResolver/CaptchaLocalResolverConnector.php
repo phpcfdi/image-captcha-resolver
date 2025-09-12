@@ -31,7 +31,6 @@ class CaptchaLocalResolverConnector
      * Connector constructor
      *
      * @param string $baseUrl Full URL to access service, by example http://localhost:9095
-     * @param HttpClientInterface|null $httpClient
      * @throws UndiscoverableClientException
      */
     public function __construct(string $baseUrl, ?HttpClientInterface $httpClient = null)
@@ -41,9 +40,6 @@ class CaptchaLocalResolverConnector
     }
 
     /**
-     * @param CaptchaImageInterface $image
-     * @param TimerInterface $timer
-     * @return CaptchaAnswerInterface
      * @throws RuntimeException if unable to get an answer after <timeout> seconds
      * @throws RuntimeException if unable to send image
      * @throws RuntimeException if code does not exists
@@ -69,8 +65,6 @@ class CaptchaLocalResolverConnector
     }
 
     /**
-     * @param CaptchaImageInterface $image
-     * @return string
      * @throws RuntimeException if unable to send image
      * @throws RuntimeException if image was sent but service returns empty code
      * @throws RuntimeException if http transaction error occurs
@@ -95,8 +89,6 @@ class CaptchaLocalResolverConnector
     /**
      * Check code for answer, if empty string means answer does not exist yet
      *
-     * @param string $code
-     * @return string
      * @throws RuntimeException if code does not exist
      * @throws RuntimeException if unable to check code
      * @throws RuntimeException if http transaction error occurs

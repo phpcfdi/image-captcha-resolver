@@ -11,7 +11,6 @@ use RuntimeException;
 
 final class CaptchaLocalResolverUsageTest extends TestCase
 {
-    /** @var string */
     private string $localResolverUrl;
 
     protected function setUp(): void

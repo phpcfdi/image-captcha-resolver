@@ -44,7 +44,6 @@ abstract class HttpTestCase extends TestCase
 
     /**
      * @param array<string, string|string[]> $data
-     * @return ResponseInterface
      */
     protected function createJsonRespose(array $data): ResponseInterface
     {

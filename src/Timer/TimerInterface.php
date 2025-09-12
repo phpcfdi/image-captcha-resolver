@@ -18,13 +18,11 @@ interface TimerInterface
 
     /**
      * Return true if the timer is expired
-     * @return bool
      */
     public function isExpired(): bool;
 
     /**
      * The total time to wait to define that the timer is expired
-     * @return int
      */
     public function getTimeoutSeconds(): int;
 }

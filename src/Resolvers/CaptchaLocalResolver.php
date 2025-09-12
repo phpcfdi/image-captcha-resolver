@@ -35,11 +35,6 @@ class CaptchaLocalResolver implements CaptchaResolverInterface
     }
 
     /**
-     * @param string $baseUrl
-     * @param int $initialWaitSeconds
-     * @param int $timeoutSeconds
-     * @param int $sleepMilliseconds
-     * @return self
      * @throws UndiscoverableClientException
      */
     public static function create(

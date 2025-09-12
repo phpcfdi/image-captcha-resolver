@@ -29,8 +29,6 @@ class AntiCaptchaConnector
     /**
      * AntiCaptchaConnector constructor.
      *
-     * @param string $clientKey
-     * @param HttpClientInterface|null $httpClient
      * @throws UndiscoverableClientException
      */
     public function __construct(string $clientKey, ?HttpClientInterface $httpClient = null)
@@ -51,7 +49,6 @@ class AntiCaptchaConnector
 
     /**
      * @param string|Stringable $base64Image
-     * @return string
      * @throws RuntimeException
      */
     public function createTask($base64Image): string
@@ -80,8 +77,6 @@ class AntiCaptchaConnector
     }
 
     /**
-     * @param string $taskId
-     * @return string
      * @throws RuntimeException
      */
     public function getTaskResult(string $taskId): string
@@ -119,9 +114,7 @@ class AntiCaptchaConnector
     }
 
     /**
-     * @param string $methodName
      * @param array<string, mixed> $postData
-     * @return stdClass
      * @throws RuntimeException When anti-captcha service return an error status
      */
     public function request(string $methodName, array $postData): stdClass

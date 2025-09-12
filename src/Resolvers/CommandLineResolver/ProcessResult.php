@@ -12,7 +12,6 @@ final class ProcessResult
     private array $output;
 
     /**
-     * @param int $exitCode
      * @param string[] $output
      */
     public function __construct(int $exitCode, array $output)

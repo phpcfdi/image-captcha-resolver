@@ -54,10 +54,7 @@ final class HttpClient implements HttpClientInterface
     }
 
     /**
-     * @param string $method
-     * @param string $uri
      * @param array<string, string|string[]> $headers
-     * @return RequestInterface
      */
     public function createRequest(string $method, string $uri, array $headers): RequestInterface
     {
@@ -71,10 +68,7 @@ final class HttpClient implements HttpClientInterface
     }
 
     /**
-     * @param string $method
-     * @param string $uri
      * @param array<string, string|string[]> $headers
-     * @return RequestInterface
      */
     public function createJsonRequest(string $method, string $uri, array $headers): RequestInterface
     {
@@ -97,8 +91,6 @@ final class HttpClient implements HttpClientInterface
     }
 
     /**
-     * @param RequestInterface $request
-     * @return ResponseInterface
      * @throws HttpException
      */
     public function send(RequestInterface $request): ResponseInterface
