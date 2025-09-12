@@ -32,7 +32,7 @@ final class CaptchaImage implements CaptchaImageInterface
             throw new InvalidArgumentException('The captcha image is not base64 encoded');
         }
 
-        $mimeType = self::finfo()->buffer($binary, FILEINFO_MIME_TYPE) ?: '';
+        $mimeType = $this->finfo()->buffer($binary, FILEINFO_MIME_TYPE) ?: '';
         if ('image/' !== substr($mimeType, 0, 6)) {
             throw new InvalidArgumentException('The captcha image is not an image');
         }
@@ -65,7 +65,7 @@ final class CaptchaImage implements CaptchaImageInterface
         return self::newFromBase64((string) preg_replace('#\s#', '', $parts['image']));
     }
 
-    private static function finfo(): finfo
+    private function finfo(): finfo
     {
         // if finfo is used in other places on the project then move it to a static class
         static $finfo = null;

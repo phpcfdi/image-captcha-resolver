@@ -12,12 +12,11 @@ class FakeExpiredTimer implements TimerInterface
     public $expireAfter;
 
     /** @var int */
-    private $waitCount;
+    private $waitCount = 0;
 
     public function __construct(int $expireAfter = 0)
     {
         $this->expireAfter = $expireAfter;
-        $this->waitCount = 0;
     }
 
     public function getTimeoutSeconds(): int
