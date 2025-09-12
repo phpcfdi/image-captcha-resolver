@@ -22,13 +22,13 @@ class CaptchaLocalResolver implements CaptchaResolverInterface
 
     public const DEFAULT_WAIT = 500;
 
-    public function __construct(private CaptchaLocalResolverConnector $connector, private TimerInterface $timer)
-    {
+    public function __construct(
+        private readonly CaptchaLocalResolverConnector $connector,
+        private readonly TimerInterface $timer,
+    ) {
     }
 
-    /**
-     * @throws UndiscoverableClientException
-     */
+    /** @throws UndiscoverableClientException */
     public static function create(
         string $baseUrl,
         int $initialWaitSeconds = self::DEFAULT_INITIAL_WAIT,

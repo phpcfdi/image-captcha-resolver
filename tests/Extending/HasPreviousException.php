@@ -9,7 +9,7 @@ use Throwable;
 
 class HasPreviousException extends Constraint
 {
-    public function __construct(private Throwable $exception)
+    public function __construct(private readonly Throwable $exception)
     {
     }
 

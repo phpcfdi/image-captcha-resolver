@@ -10,7 +10,7 @@ use Throwable;
 
 final class CaptchaAnswer implements JsonSerializable, CaptchaAnswerInterface
 {
-    private string $value;
+    private readonly string $value;
 
     public function __construct(string $value)
     {

@@ -9,7 +9,7 @@ final class ProcessResult
     /**
      * @param string[] $output
      */
-    public function __construct(private int $exitCode, private array $output)
+    public function __construct(private readonly int $exitCode, private array $output)
     {
     }
 

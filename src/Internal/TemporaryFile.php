@@ -12,7 +12,7 @@ use RuntimeException;
  */
 final class TemporaryFile
 {
-    private string $path;
+    private readonly string $path;
 
     public function __construct(string $prefix = '', string $directory = '')
     {

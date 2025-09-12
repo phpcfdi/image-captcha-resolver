@@ -10,8 +10,8 @@ use Throwable;
 class UnableToResolveCaptchaException extends RuntimeException
 {
     public function __construct(
-        private CaptchaResolverInterface $resolver,
-        private CaptchaImageInterface $image,
+        private readonly CaptchaResolverInterface $resolver,
+        private readonly CaptchaImageInterface $image,
         ?Throwable $previous = null,
     ) {
         parent::__construct('Unable to resolve captcha image', 0, $previous);

@@ -16,7 +16,7 @@ use Throwable;
 final class CommandLineResolver implements CaptchaResolverInterface
 {
     /** @var string[] */
-    private array $command;
+    private readonly array $command;
 
     /**
      * CommandLineResolver constructor.
@@ -25,8 +25,8 @@ final class CommandLineResolver implements CaptchaResolverInterface
      */
     public function __construct(
         array $command,
-        private CommandLineResolver\AnswerBuilderInterface $answerBuilder,
-        private CommandLineResolver\ProcessRunnerInterface $processRunner,
+        private readonly CommandLineResolver\AnswerBuilderInterface $answerBuilder,
+        private readonly CommandLineResolver\ProcessRunnerInterface $processRunner,
     ) {
         if ([] === $command) {
             throw new LogicException('Invalid command argument');

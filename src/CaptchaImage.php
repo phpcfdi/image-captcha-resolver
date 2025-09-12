@@ -10,9 +10,9 @@ use LogicException;
 
 final class CaptchaImage implements CaptchaImageInterface
 {
-    private string $contents;
+    private readonly string $contents;
 
-    private string $mimeType;
+    private readonly string $mimeType;
 
     /**
      * CaptchaImage constructor.
