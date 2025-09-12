@@ -13,6 +13,7 @@ use PhpCfdi\ImageCaptchaResolver\Resolvers\CaptchaLocalResolver\CaptchaLocalReso
 use PhpCfdi\ImageCaptchaResolver\Tests\Extending\AssertHasPreviousExceptionTrait;
 use PhpCfdi\ImageCaptchaResolver\Tests\HttpTestCase;
 use PhpCfdi\ImageCaptchaResolver\Tests\Unit\FakeExpiredTimer;
+use Psr\Http\Message\RequestInterface;
 use RuntimeException;
 
 final class CaptchaLocalResolverConnectorTest extends HttpTestCase
@@ -57,6 +58,7 @@ final class CaptchaLocalResolverConnectorTest extends HttpTestCase
 
         $code = $connector->sendImage($image);
 
+        /** @var RequestInterface $lastRequest */
         $lastRequest = $phpHttpMockClient->getLastRequest();
         $this->assertSame($serviceCode, $code);
         $this->assertJsonStringEqualsJsonString(
@@ -105,6 +107,7 @@ final class CaptchaLocalResolverConnectorTest extends HttpTestCase
 
         $answer = $connector->checkCode($serviceCode);
 
+        /** @var RequestInterface $lastRequest */
         $lastRequest = $phpHttpMockClient->getLastRequest();
         $this->assertSame($serviceAnswer, $answer);
         $this->assertJsonStringEqualsJsonString(
@@ -125,6 +128,7 @@ final class CaptchaLocalResolverConnectorTest extends HttpTestCase
 
         $answer = $connector->checkCode($serviceCode);
 
+        /** @var RequestInterface $lastRequest */
         $lastRequest = $phpHttpMockClient->getLastRequest();
         $this->assertSame($serviceAnswer, $answer);
         $this->assertJsonStringEqualsJsonString(
