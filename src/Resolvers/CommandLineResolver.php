@@ -55,8 +55,8 @@ final class CommandLineResolver implements CaptchaResolverInterface
      */
     public static function create(
         array $command,
-        CommandLineResolver\AnswerBuilderInterface $answerBuilder = null,
-        CommandLineResolver\ProcessRunnerInterface $processRunner = null
+        ?CommandLineResolver\AnswerBuilderInterface $answerBuilder = null,
+        ?CommandLineResolver\ProcessRunnerInterface $processRunner = null
     ): self {
         return new self(
             $command,

@@ -35,7 +35,7 @@ class AntiCaptchaConnector
      * @param HttpClientInterface|null $httpClient
      * @throws UndiscoverableClientException
      */
-    public function __construct(string $clientKey, HttpClientInterface $httpClient = null)
+    public function __construct(string $clientKey, ?HttpClientInterface $httpClient = null)
     {
         $this->clientKey = $clientKey;
         $this->httpClient = $httpClient ?? HttpClient::discover();

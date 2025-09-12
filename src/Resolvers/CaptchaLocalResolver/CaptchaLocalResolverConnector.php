@@ -35,7 +35,7 @@ class CaptchaLocalResolverConnector
      * @param HttpClientInterface|null $httpClient
      * @throws UndiscoverableClientException
      */
-    public function __construct(string $baseUrl, HttpClientInterface $httpClient = null)
+    public function __construct(string $baseUrl, ?HttpClientInterface $httpClient = null)
     {
         $this->baseUrl = rtrim($baseUrl, '/');
         $this->httpClient = $httpClient ?? HttpClient::discover();

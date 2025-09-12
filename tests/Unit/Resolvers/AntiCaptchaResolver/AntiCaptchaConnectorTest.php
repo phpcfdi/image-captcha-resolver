@@ -21,7 +21,7 @@ final class AntiCaptchaConnectorTest extends HttpTestCase
     /** @var string */
     private $clientKey = 'client-key';
 
-    public function createConnector(HttpClientInterface $client = null): AntiCaptchaConnector
+    public function createConnector(?HttpClientInterface $client = null): AntiCaptchaConnector
     {
         return new AntiCaptchaConnector($this->clientKey, $client);
     }

@@ -20,8 +20,8 @@ class HttpException extends RuntimeException
 
     public function __construct(
         RequestInterface $request,
-        ResponseInterface $response = null,
-        Throwable $previous = null
+        ?ResponseInterface $response = null,
+        ?Throwable $previous = null
     ) {
         parent::__construct("Error on {$request->getMethod()} {$request->getUri()}", 0, $previous);
         $this->request = $request;

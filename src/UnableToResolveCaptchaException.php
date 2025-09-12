@@ -18,7 +18,7 @@ class UnableToResolveCaptchaException extends RuntimeException
     public function __construct(
         CaptchaResolverInterface $resolver,
         CaptchaImageInterface $image,
-        Throwable $previous = null
+        ?Throwable $previous = null
     ) {
         parent::__construct('Unable to resolve captcha image', 0, $previous);
         $this->resolver = $resolver;
