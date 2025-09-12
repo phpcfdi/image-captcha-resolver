@@ -15,7 +15,7 @@
         "source": "https://github.com/phpcfdi/image-captcha-resolver"
     },
     "require": {
-        "php": ">=7.3",
+        "php": ">=7.4",
         "ext-fileinfo": "*",
         "ext-json": "*",
         "php-http/discovery": "^1.14",
