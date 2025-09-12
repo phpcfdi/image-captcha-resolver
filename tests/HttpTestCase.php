@@ -16,14 +16,11 @@ use Psr\Http\Message\StreamFactoryInterface;
 
 abstract class HttpTestCase extends TestCase
 {
-    /** @var StreamFactoryInterface */
-    private $streamFactory;
+    private StreamFactoryInterface $streamFactory;
 
-    /** @var RequestFactoryInterface */
-    private $requestFactory;
+    private RequestFactoryInterface $requestFactory;
 
-    /** @var ResponseFactoryInterface */
-    private $responseFactory;
+    private ResponseFactoryInterface $responseFactory;
 
     /** @noinspection PhpUnhandledExceptionInspection */
     protected function setUp(): void

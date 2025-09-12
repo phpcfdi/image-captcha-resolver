@@ -20,8 +20,7 @@ final class CaptchaLocalResolverConnectorTest extends HttpTestCase
 {
     use AssertHasPreviousExceptionTrait;
 
-    /** @var string */
-    private $baseUrl = 'http://localhost:9095';
+    private string $baseUrl = 'http://localhost:9095';
 
     public function createConnectorWithMockClient(HttpClientInterface $client): CaptchaLocalResolverConnector
     {

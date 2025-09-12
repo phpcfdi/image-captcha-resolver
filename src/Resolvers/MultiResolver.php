@@ -14,7 +14,7 @@ use Throwable;
 final class MultiResolver implements CaptchaResolverInterface, Countable
 {
     /** @var CaptchaResolverInterface[] */
-    private $resolvers;
+    private array $resolvers;
 
     /** @var array<int, Throwable|CaptchaAnswerInterface> */
     private $lastResults = [];

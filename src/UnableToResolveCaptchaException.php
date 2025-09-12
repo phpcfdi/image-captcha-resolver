@@ -9,11 +9,9 @@ use Throwable;
 
 class UnableToResolveCaptchaException extends RuntimeException
 {
-    /** @var CaptchaResolverInterface */
-    private $resolver;
+    private CaptchaResolverInterface $resolver;
 
-    /** @var CaptchaImageInterface */
-    private $image;
+    private CaptchaImageInterface $image;
 
     public function __construct(
         CaptchaResolverInterface $resolver,

@@ -24,11 +24,9 @@ final class AntiCaptchaResolver implements CaptchaResolverInterface
 
     public const DEFAULT_WAIT = 2000;
 
-    /** @var AntiCaptchaConnector */
-    private $connector;
+    private AntiCaptchaConnector $connector;
 
-    /** @var TimerInterface */
-    private $timer;
+    private TimerInterface $timer;
 
     public function __construct(
         AntiCaptchaConnector $connector,

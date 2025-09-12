@@ -24,8 +24,7 @@ class ConsoleResolver implements CaptchaResolverInterface
 
     public const MAX_WAIT = 300;
 
-    /** @var string */
-    private $captchaOutputFile;
+    private string $captchaOutputFile;
 
     /** @var float|int */
     private $waitForAnswerSeconds;

@@ -16,13 +16,11 @@ use Throwable;
 final class CommandLineResolver implements CaptchaResolverInterface
 {
     /** @var string[] */
-    private $command;
+    private array $command;
 
-    /** @var CommandLineResolver\AnswerBuilderInterface */
-    private $answerBuilder;
+    private CommandLineResolver\AnswerBuilderInterface $answerBuilder;
 
-    /** @var CommandLineResolver\ProcessRunnerInterface */
-    private $processRunner;
+    private CommandLineResolver\ProcessRunnerInterface $processRunner;
 
     /**
      * CommandLineResolver constructor.

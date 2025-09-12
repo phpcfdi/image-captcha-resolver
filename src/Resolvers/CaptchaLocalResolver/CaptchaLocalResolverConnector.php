@@ -23,10 +23,9 @@ use RuntimeException;
 class CaptchaLocalResolverConnector
 {
     /** @var string Full URL to access service, by example http://localhost:9095 */
-    private $baseUrl;
+    private string $baseUrl;
 
-    /** @var HttpClientInterface */
-    private $httpClient;
+    private HttpClientInterface $httpClient;
 
     /**
      * Connector constructor

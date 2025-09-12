@@ -19,8 +19,7 @@ final class AntiCaptchaConnectorTest extends HttpTestCase
 {
     use AssertHasPreviousExceptionTrait;
 
-    /** @var string */
-    private $clientKey = 'client-key';
+    private string $clientKey = 'client-key';
 
     public function createConnector(?HttpClientInterface $client = null): AntiCaptchaConnector
     {

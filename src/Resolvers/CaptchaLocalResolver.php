@@ -22,11 +22,9 @@ class CaptchaLocalResolver implements CaptchaResolverInterface
 
     public const DEFAULT_WAIT = 500;
 
-    /** @var CaptchaLocalResolverConnector */
-    private $connector;
+    private CaptchaLocalResolverConnector $connector;
 
-    /** @var TimerInterface */
-    private $timer;
+    private TimerInterface $timer;
 
     public function __construct(
         CaptchaLocalResolverConnector $connector,

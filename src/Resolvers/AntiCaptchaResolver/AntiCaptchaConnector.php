@@ -22,11 +22,9 @@ class AntiCaptchaConnector
 {
     public const BASE_URL = 'https://api.anti-captcha.com/';
 
-    /** @var string */
-    private $clientKey;
+    private string $clientKey;
 
-    /** @var HttpClientInterface */
-    private $httpClient;
+    private HttpClientInterface $httpClient;
 
     /**
      * AntiCaptchaConnector constructor.

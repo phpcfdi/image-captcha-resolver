@@ -12,11 +12,9 @@ use Throwable;
 
 class HttpException extends RuntimeException
 {
-    /** @var RequestInterface */
-    private $request;
+    private RequestInterface $request;
 
-    /** @var ResponseInterface|null */
-    private $response;
+    private ?ResponseInterface $response;
 
     public function __construct(
         RequestInterface $request,
