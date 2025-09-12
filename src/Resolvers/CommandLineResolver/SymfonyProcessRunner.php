@@ -40,7 +40,7 @@ class SymfonyProcessRunner implements ProcessRunnerInterface
             $process->run(
                 function (string $type, string $text) use (&$output): void {
                     $output[] = rtrim($text, PHP_EOL);
-                }
+                },
             );
         } catch (ProcessTimedOutException $exception) {
             throw new RuntimeException("Process timeout after {$this->getTimeoutSeconds()} seconds", 0, $exception);

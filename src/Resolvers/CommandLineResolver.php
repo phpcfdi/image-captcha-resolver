@@ -61,7 +61,7 @@ final class CommandLineResolver implements CaptchaResolverInterface
         return new self(
             $command,
             $answerBuilder ?? new CommandLineResolver\LastLineAnswerBuilder(),
-            $processRunner ?? new CommandLineResolver\SymfonyProcessRunner()
+            $processRunner ?? new CommandLineResolver\SymfonyProcessRunner(),
         );
     }
 

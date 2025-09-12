@@ -66,7 +66,7 @@ final class AntiCaptchaResolver implements CaptchaResolverInterface
     ): self {
         return new self(
             new AntiCaptchaConnector($clientKey),
-            new Timer($initialWaitSeconds, $timeoutSeconds, $waitMilliseconds)
+            new Timer($initialWaitSeconds, $timeoutSeconds, $waitMilliseconds),
         );
     }
 

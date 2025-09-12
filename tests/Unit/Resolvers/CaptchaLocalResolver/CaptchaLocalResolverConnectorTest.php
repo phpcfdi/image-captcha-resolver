@@ -63,7 +63,7 @@ final class CaptchaLocalResolverConnectorTest extends HttpTestCase
         $this->assertSame($serviceCode, $code);
         $this->assertJsonStringEqualsJsonString(
             json_encode(['image' => $image->asBase64()]) ?: '',
-            (string) $lastRequest->getBody()
+            (string) $lastRequest->getBody(),
         );
     }
 
@@ -112,7 +112,7 @@ final class CaptchaLocalResolverConnectorTest extends HttpTestCase
         $this->assertSame($serviceAnswer, $answer);
         $this->assertJsonStringEqualsJsonString(
             json_encode(['code' => $serviceCode]) ?: '',
-            (string) $lastRequest->getBody()
+            (string) $lastRequest->getBody(),
         );
     }
 
@@ -133,7 +133,7 @@ final class CaptchaLocalResolverConnectorTest extends HttpTestCase
         $this->assertSame($serviceAnswer, $answer);
         $this->assertJsonStringEqualsJsonString(
             json_encode(['code' => $serviceCode]) ?: '',
-            (string) $lastRequest->getBody()
+            (string) $lastRequest->getBody(),
         );
     }
 

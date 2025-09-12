@@ -29,7 +29,7 @@ final class CaptchaImageTest extends TestCase
         $this->assertSame($contentBase64, $image->jsonSerialize());
         $this->assertJsonStringEqualsJsonString(
             json_encode($contentBase64) ?: '',
-            json_encode($image, JSON_THROW_ON_ERROR)
+            json_encode($image, JSON_THROW_ON_ERROR),
         );
     }
 

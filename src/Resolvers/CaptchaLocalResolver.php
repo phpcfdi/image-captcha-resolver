@@ -52,7 +52,7 @@ class CaptchaLocalResolver implements CaptchaResolverInterface
     ): self {
         return new self(
             new CaptchaLocalResolverConnector($baseUrl),
-            new Timer($initialWaitSeconds, $timeoutSeconds, $sleepMilliseconds)
+            new Timer($initialWaitSeconds, $timeoutSeconds, $sleepMilliseconds),
         );
     }
 

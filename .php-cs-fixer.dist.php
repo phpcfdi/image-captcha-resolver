@@ -23,6 +23,7 @@ return (new PhpCsFixer\Config())
         'no_empty_statement' => true,
         'no_extra_blank_lines' => true,
         'type_declaration_spaces' => true,
+        'trailing_comma_in_multiline' => ['after_heredoc' => true, 'elements' => ['arrays', 'arguments']],
         'no_blank_lines_after_phpdoc' => true,
         'object_operator_without_whitespace' => true,
         'binary_operator_spaces' => true,
@@ -35,16 +36,18 @@ return (new PhpCsFixer\Config())
         'standardize_not_equals' => true,
         'concat_space' => ['spacing' => 'one'],
         'linebreak_after_opening_tag' => true,
+        'fully_qualified_strict_types' => true,
         // symfony:risky
         'no_alias_functions' => true,
         'self_accessor' => true,
         // contrib
         'not_operator_with_successor_space' => true,
+        'ordered_imports' => ['imports_order' => ['class', 'function', 'const']], // @PSR12 sort_algorithm: none
     ])
     ->setFinder(
         PhpCsFixer\Finder::create()
             ->in(__DIR__)
             ->append([__FILE__])
-            ->exclude(['vendor', 'tools', 'build'])
+            ->exclude(['vendor', 'tools', 'build']),
     )
 ;

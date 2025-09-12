@@ -56,7 +56,7 @@ abstract class HttpTestCase extends TestCase
         return $responseFactory->createResponse()
             ->withHeader('Content-Type', 'application/json')
             ->withBody(
-                $streamFactory->createStream(json_encode($data) ?: '')
+                $streamFactory->createStream(json_encode($data) ?: ''),
             );
     }
 

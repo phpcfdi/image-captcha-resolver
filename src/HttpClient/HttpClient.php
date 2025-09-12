@@ -47,7 +47,7 @@ final class HttpClient implements HttpClientInterface
             return new self(
                 Psr18ClientDiscovery::find(),
                 Psr17FactoryDiscovery::findRequestFactory(),
-                Psr17FactoryDiscovery::findStreamFactory()
+                Psr17FactoryDiscovery::findStreamFactory(),
             );
             // @codeCoverageIgnoreStart
         } catch (Throwable $exception) {
@@ -93,7 +93,7 @@ final class HttpClient implements HttpClientInterface
         $request = $this->createJsonRequest('POST', $uri, $headers);
 
         $request = $request->withBody(
-            $this->streamFactory->createStream(json_encode($data) ?: '')
+            $this->streamFactory->createStream(json_encode($data) ?: ''),
         );
 
         return $this->send($request);

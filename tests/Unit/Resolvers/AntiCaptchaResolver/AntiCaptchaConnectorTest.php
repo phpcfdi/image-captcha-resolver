@@ -84,7 +84,7 @@ final class AntiCaptchaConnectorTest extends HttpTestCase
 
         $phpHttpMockClient = $this->createPhpHttpMockClient();
         $phpHttpMockClient->addResponse(
-            $this->createJsonRespose(['status' => 'Ready', 'solution' => ['text' => $expectedResult]])
+            $this->createJsonRespose(['status' => 'Ready', 'solution' => ['text' => $expectedResult]]),
         );
         $connector = $this->createConnector($this->createHttpClient($phpHttpMockClient));
 
@@ -119,13 +119,13 @@ final class AntiCaptchaConnectorTest extends HttpTestCase
 
         $this->assertJsonStringEqualsJsonString(
             json_encode($requestData + ['clientKey' => $this->clientKey]) ?: '',
-            (string) $request->getBody()
+            (string) $request->getBody(),
         );
 
         $this->assertEquals(
             json_decode(json_encode($responseData) ?: ''),
             $result,
-            'result was expected to be an object with the same values'
+            'result was expected to be an object with the same values',
         );
     }
 
@@ -133,7 +133,7 @@ final class AntiCaptchaConnectorTest extends HttpTestCase
     {
         $phpHttpMockClient = $this->createPhpHttpMockClient();
         $phpHttpMockClient->addResponse(
-            $this->createJsonRespose(['errorId' => '1', 'errorDescription' => 'description'])
+            $this->createJsonRespose(['errorId' => '1', 'errorDescription' => 'description']),
         );
         $connector = $this->createConnector($this->createHttpClient($phpHttpMockClient));
 

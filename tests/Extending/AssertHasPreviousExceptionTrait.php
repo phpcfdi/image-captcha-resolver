@@ -17,7 +17,7 @@ trait AssertHasPreviousExceptionTrait
         Assert::assertThat(
             $expectedException,
             static::hasPreviousException($exception),
-            $message
+            $message,
         );
     }
 

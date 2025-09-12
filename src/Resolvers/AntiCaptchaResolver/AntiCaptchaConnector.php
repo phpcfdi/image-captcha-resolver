@@ -145,7 +145,7 @@ class AntiCaptchaConnector
         $errorId = intval($result->errorId ?? 0);
         if ($errorId > 0) {
             throw new RuntimeException(
-                sprintf('Anti-Captcha Error (%d): %s', $errorId, $result->errorDescription ?? '')
+                sprintf('Anti-Captcha Error (%d): %s', $errorId, $result->errorDescription ?? ''),
             );
         }
 

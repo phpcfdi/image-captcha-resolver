@@ -22,7 +22,7 @@ class HasPreviousException extends Constraint
         return sprintf(
             ' is part of previous exception chain of %s &%s',
             get_class($this->exception),
-            spl_object_hash($this->exception)
+            spl_object_hash($this->exception),
         );
     }
 

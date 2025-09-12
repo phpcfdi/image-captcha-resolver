@@ -23,7 +23,7 @@ final class CaptchaAnswerTest extends TestCase
         $this->assertSame($value, $answer->jsonSerialize());
         $this->assertJsonStringEqualsJsonString(
             json_encode($value) ?: '',
-            json_encode($answer, JSON_THROW_ON_ERROR)
+            json_encode($answer, JSON_THROW_ON_ERROR),
         );
     }
 
