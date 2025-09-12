@@ -11,6 +11,7 @@ use PhpCfdi\ImageCaptchaResolver\HttpClient\HttpClientInterface;
 use PhpCfdi\ImageCaptchaResolver\Resolvers\AntiCaptchaResolver\AntiCaptchaConnector;
 use PhpCfdi\ImageCaptchaResolver\Tests\Extending\AssertHasPreviousExceptionTrait;
 use PhpCfdi\ImageCaptchaResolver\Tests\HttpTestCase;
+use Psr\Http\Message\RequestInterface;
 use RuntimeException;
 use stdClass;
 
@@ -55,12 +56,13 @@ final class AntiCaptchaConnectorTest extends HttpTestCase
         $taskId = $connector->createTask($image);
         $this->assertSame($expectedTaskId, $taskId);
 
+        /** @var RequestInterface $lastRequest */
         $lastRequest = $phpHttpMockClient->getLastRequest();
-        /** @var stdClass $sentValues */
+        /** @phpstan-var stdClass&object{clientKey: string, task: stdClass&object{type: string, body: string}} $sentValues */
         $sentValues = json_decode((string) $lastRequest->getBody());
-        $this->assertSame($this->clientKey, $sentValues->clientKey ?? '');
-        $this->assertSame('ImageToTextTask', $sentValues->task->type ?? '');
-        $this->assertSame($image->asBase64(), $sentValues->task->body ?? '');
+        $this->assertSame($this->clientKey, $sentValues->clientKey);
+        $this->assertSame('ImageToTextTask', $sentValues->task->type);
+        $this->assertSame($image->asBase64(), $sentValues->task->body);
     }
 
     public function testGetTaskResultProcessing(): void
@@ -112,6 +114,7 @@ final class AntiCaptchaConnectorTest extends HttpTestCase
         $connector = $this->createConnector($this->createHttpClient($phpHttpMockClient));
         $requestData = ['foo' => 'bar'];
         $result = $connector->request('fake-method', $requestData);
+        /** @var RequestInterface $request */
         $request = $phpHttpMockClient->getLastRequest();
 
         $this->assertJsonStringEqualsJsonString(

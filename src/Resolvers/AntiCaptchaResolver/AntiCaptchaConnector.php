@@ -67,6 +67,15 @@ class AntiCaptchaConnector
             ],
         ];
 
+        /**
+         * @see https://anti-captcha.com/es/apidoc/methods/createTask
+         * @phpstan-var stdClass&object{
+         *     errorId: int,
+         *     errorCode?: string,
+         *     errorDescription?: string,
+         *     taskId: int,
+         * } $result
+         */
         $result = $this->request('createTask', $postData);
 
         return (string) $result->taskId;
@@ -79,19 +88,36 @@ class AntiCaptchaConnector
      */
     public function getTaskResult(string $taskId): string
     {
-        /** @see https://anti-captcha.com/es/apidoc/methods/getTaskResult */
+        /**
+         * @see https://anti-captcha.com/es/apidoc/methods/getTaskResult
+         * @phpstan-var stdClass&object{
+         *     errorId: int,
+         *     errorCode?: string,
+         *     errorDescription?: string,
+         *     status?: string,
+         *     solution?: stdClass&object{text: string, url: string},
+         *     cost?: string,
+         *     ip?: string,
+         *     createTime?: int,
+         *     endTime?: int,
+         *     solveCount?: int,
+         * } $result
+         */
         $result = $this->request('getTaskResult', [
             'taskId' => $taskId,
         ]);
 
-        $antiCaptchaStatus = strtolower($result->status);
+        $antiCaptchaStatus = strtolower($result->status ?? '');
         if ('processing' === $antiCaptchaStatus) {
             return '';
         }
         if ('ready' === $antiCaptchaStatus) {
+            if (! isset($result->solution)) {
+                throw new LogicException('Expected solution object was not received.');
+            }
             return strval($result->solution->text ?? '');
         }
-        throw new LogicException("Unknown status '$result->status' for task");
+        throw new LogicException(sprintf("Unknown status '%s' for task", $result->status ?? ''));
     }
 
     /**
@@ -115,10 +141,11 @@ class AntiCaptchaConnector
         if (! $result instanceof stdClass) {
             $result = (object) ['errorId' => 1, 'errorDescription' => 'Response is not a JSON object'];
         }
+        /** @phpstan-var stdClass&object{errorId?: scalar, errorDescription?: scalar} $result */
         $errorId = intval($result->errorId ?? 0);
         if ($errorId > 0) {
             throw new RuntimeException(
-                sprintf('Anti-Captcha Error (%d): %s', $errorId, strval($result->errorDescription ?? ''))
+                sprintf('Anti-Captcha Error (%d): %s', $errorId, $result->errorDescription ?? '')
             );
         }
 
