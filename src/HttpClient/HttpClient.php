@@ -70,7 +70,7 @@ final class HttpClient implements HttpClientInterface
         return $this->createRequest($method, $uri, array_merge($jsonHeaders, $headers));
     }
 
-    public function postJson(string $uri, array $headers = [], $data = null): ResponseInterface
+    public function postJson(string $uri, array $headers = [], mixed $data = null): ResponseInterface
     {
         $request = $this->createJsonRequest('POST', $uri, $headers);
 

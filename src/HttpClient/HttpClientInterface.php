@@ -13,5 +13,5 @@ interface HttpClientInterface
      * @param array|object|mixed $data
      * @throws HttpException
      */
-    public function postJson(string $uri, array $headers = [], $data = null): ResponseInterface;
+    public function postJson(string $uri, array $headers = [], mixed $data = null): ResponseInterface;
 }

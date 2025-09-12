@@ -44,11 +44,8 @@ class AntiCaptchaConnector
         return $this->httpClient;
     }
 
-    /**
-     * @param string|Stringable $base64Image
-     * @throws RuntimeException
-     */
-    public function createTask($base64Image): string
+    /** @throws RuntimeException */
+    public function createTask(string|Stringable $base64Image): string
     {
         /** @see https://anti-captcha.com/es/apidoc/task-types/ImageToTextTask */
         $postData = [

@@ -42,7 +42,7 @@ class CaptchaLocalResolverConnector
     /**
      * @throws RuntimeException if unable to get an answer after <timeout> seconds
      * @throws RuntimeException if unable to send image
-     * @throws RuntimeException if code does not exists
+     * @throws RuntimeException if code does not exist
      * @throws RuntimeException if unable to check code
      * @throws RuntimeException if http transaction error occurs
      */

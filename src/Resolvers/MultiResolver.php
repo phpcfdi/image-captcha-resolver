@@ -16,12 +16,15 @@ final class MultiResolver implements CaptchaResolverInterface, Countable
     /** @var list<CaptchaResolverInterface> */
     private readonly array $resolvers;
 
+    private readonly int $resolversCount;
+
     /** @var list<Throwable|CaptchaAnswerInterface> */
     private array $lastResults = [];
 
     public function __construct(CaptchaResolverInterface ...$resolvers)
     {
         $this->resolvers = array_values($resolvers);
+        $this->resolversCount = count($this->resolvers);
     }
 
     /** @return list<CaptchaResolverInterface> */
@@ -50,7 +53,7 @@ final class MultiResolver implements CaptchaResolverInterface, Countable
 
     public function count(): int
     {
-        return count($this->resolvers);
+        return $this->resolversCount;
     }
 
     public function clearResults(): void
