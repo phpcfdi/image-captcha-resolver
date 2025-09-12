@@ -2,7 +2,6 @@
     "name": "phpcfdi/image-captcha-resolver",
     "description": "Conectores para resolver captchas de imágenes",
     "license": "MIT",
-    "keywords": [],
     "authors": [
         {
             "name": "Carlos C Soto",
