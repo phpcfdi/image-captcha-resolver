@@ -63,16 +63,16 @@
             "@dev:test"
         ],
         "dev:check-style": [
-            "@php -r 'exit(intval(PHP_VERSION_ID >= 80000));' || $PHP_BINARY tools/composer-normalize normalize --dry-run",
-            "@php -r 'exit(intval(PHP_VERSION_ID >= 74000));' || $PHP_BINARY tools/php-cs-fixer fix --dry-run --verbose || true",
+            "@php tools/composer-normalize normalize --dry-run",
+            "@php tools/php-cs-fixer fix --dry-run --verbose || true",
             "@php tools/phpcs --colors -sp"
         ],
         "dev:coverage": [
             "@php -dzend_extension=xdebug.so -dxdebug.mode=coverage vendor/bin/phpunit --coverage-html build/coverage/html/"
         ],
         "dev:fix-style": [
-            "@php -r 'exit(intval(PHP_VERSION_ID >= 80000));' || $PHP_BINARY tools/composer-normalize normalize",
-            "@php -r 'exit(intval(PHP_VERSION_ID >= 74000));' || $PHP_BINARY tools/php-cs-fixer fix --verbose",
+            "@php tools/composer-normalize normalize",
+            "@php tools/php-cs-fixer fix --verbose",
             "@php tools/phpcbf --colors -sp"
         ],
         "dev:test": [
