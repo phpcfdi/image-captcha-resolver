@@ -5,7 +5,7 @@ Usamos [Versionado Semántico 2.0.0](SEMVER.md) por lo que puedes usar esta libr
 Pueden aparecer cambios no liberados que se integran a la rama principal, pero no ameritan una nueva liberación de
 versión, aunque sí su incorporación en la rama principal de trabajo. Generalmente, se tratan de cambios en el desarrollo.
 
-## Versión 0.2.5 2025-09-12
+## Versión 0.3.0 2025-09-13
 
 - Se revisa la compatibilidad de PHP 8.4.
 - Se cambian las definiciones implícitas a tipos *nullables* a explícitas.
