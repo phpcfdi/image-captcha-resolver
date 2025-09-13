@@ -16,7 +16,7 @@ use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 use RuntimeException;
 use Throwable;
 
-final class AntiCaptchaResolver implements CaptchaResolverInterface
+final readonly class AntiCaptchaResolver implements CaptchaResolverInterface
 {
     public const DEFAULT_INITIAL_WAIT = 4;
 
@@ -25,8 +25,8 @@ final class AntiCaptchaResolver implements CaptchaResolverInterface
     public const DEFAULT_WAIT = 2000;
 
     public function __construct(
-        private readonly AntiCaptchaConnector $connector,
-        private readonly TimerInterface $timer,
+        private AntiCaptchaConnector $connector,
+        private TimerInterface $timer,
     ) {
     }
 

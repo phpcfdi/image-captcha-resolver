@@ -8,11 +8,11 @@ use finfo;
 use InvalidArgumentException;
 use LogicException;
 
-final class CaptchaImage implements CaptchaImageInterface
+final readonly class CaptchaImage implements CaptchaImageInterface
 {
-    private readonly string $contents;
+    private string $contents;
 
-    private readonly string $mimeType;
+    private string $mimeType;
 
     /**
      * CaptchaImage constructor.

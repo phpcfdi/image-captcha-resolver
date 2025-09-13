@@ -13,10 +13,10 @@ use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 use RuntimeException;
 use Throwable;
 
-final class CommandLineResolver implements CaptchaResolverInterface
+final readonly class CommandLineResolver implements CaptchaResolverInterface
 {
     /** @var string[] */
-    private readonly array $command;
+    private array $command;
 
     /**
      * CommandLineResolver constructor.
@@ -25,8 +25,8 @@ final class CommandLineResolver implements CaptchaResolverInterface
      */
     public function __construct(
         array $command,
-        private readonly CommandLineResolver\AnswerBuilderInterface $answerBuilder,
-        private readonly CommandLineResolver\ProcessRunnerInterface $processRunner,
+        private CommandLineResolver\AnswerBuilderInterface $answerBuilder,
+        private CommandLineResolver\ProcessRunnerInterface $processRunner,
     ) {
         if ([] === $command) {
             throw new LogicException('Invalid command argument');

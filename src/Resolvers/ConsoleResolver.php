@@ -30,7 +30,8 @@ class ConsoleResolver implements CaptchaResolverInterface
         string $captchaOutputFile = '',
         private float|int $waitForAnswerSeconds = self::DEFAULT_WAIT,
     ) {
-        $this->captchaOutputFile = $captchaOutputFile ?: (getcwd() . '/captcha.png');
+        $this->captchaOutputFile = ('' !== $captchaOutputFile) ? $captchaOutputFile : (getcwd() . '/captcha.png');
+        $this->waitForAnswerSeconds = min(max(0, $waitForAnswerSeconds), self::MAX_WAIT);
     }
 
     public function resolve(CaptchaImageInterface $image): CaptchaAnswerInterface
@@ -80,7 +81,6 @@ class ConsoleResolver implements CaptchaResolverInterface
     /** @throws RuntimeException */
     protected function readLine(): string
     {
-        $this->waitForAnswerSeconds = min($this->waitForAnswerSeconds, self::MAX_WAIT);
         $timeoutSecs = intval(floor($this->waitForAnswerSeconds) ?: 0);
         $timeoutUsecs = intval(1000000 * ($this->waitForAnswerSeconds - $timeoutSecs));
 

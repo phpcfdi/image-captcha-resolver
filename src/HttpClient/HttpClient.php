@@ -15,12 +15,12 @@ use Psr\Http\Message\StreamFactoryInterface;
 use RuntimeException;
 use Throwable;
 
-final class HttpClient implements HttpClientInterface
+final readonly class HttpClient implements HttpClientInterface
 {
     public function __construct(
-        private readonly ClientInterface $client,
-        private readonly RequestFactoryInterface $requestFactory,
-        private readonly StreamFactoryInterface $streamFactory,
+        private ClientInterface $client,
+        private RequestFactoryInterface $requestFactory,
+        private StreamFactoryInterface $streamFactory,
     ) {
     }
 

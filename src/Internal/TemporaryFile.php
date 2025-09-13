@@ -10,9 +10,9 @@ use RuntimeException;
  * Class to create a temporary file and remove it on object destruction
  * @internal
  */
-final class TemporaryFile
+final readonly class TemporaryFile
 {
-    private readonly string $path;
+    private string $path;
 
     public function __construct(string $prefix = '', string $directory = '')
     {

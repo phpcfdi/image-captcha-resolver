@@ -8,9 +8,9 @@ use JsonSerializable;
 use LogicException;
 use Throwable;
 
-final class CaptchaAnswer implements JsonSerializable, CaptchaAnswerInterface
+final readonly class CaptchaAnswer implements JsonSerializable, CaptchaAnswerInterface
 {
-    private readonly string $value;
+    private string $value;
 
     public function __construct(string $value)
     {

@@ -6,11 +6,11 @@ namespace PhpCfdi\ImageCaptchaResolver\Resolvers\CommandLineResolver;
 
 final class ProcessResult
 {
-    /**
-     * @param string[] $output
-     */
-    public function __construct(private readonly int $exitCode, private array $output)
-    {
+    /** @param string[] $output */
+    public function __construct(
+        private readonly int $exitCode,
+        private array $output,
+    ) {
     }
 
     public function getExitCode(): int
