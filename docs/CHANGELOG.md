@@ -15,6 +15,7 @@ versión, aunque sí su incorporación en la rama principal de trabajo. Generalm
 Cambios de mantenimiento al entorno de desarrollo:
 
 - Se normalizó `composer.json`.
+- Se actualiza a PHPUnit 11.5.
 - Se actualizan las reglas para `php-cs-fixer` y `phpcs`.
 - En los flujos de trabajo de GitHub:
     - Se agrega PHP 8.4 a la matrix de pruebas.

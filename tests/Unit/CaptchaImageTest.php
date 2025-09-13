@@ -7,6 +7,7 @@ namespace PhpCfdi\ImageCaptchaResolver\Tests\Unit;
 use InvalidArgumentException;
 use PhpCfdi\ImageCaptchaResolver\CaptchaImage;
 use PhpCfdi\ImageCaptchaResolver\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class CaptchaImageTest extends TestCase
 {
@@ -66,7 +67,7 @@ final class CaptchaImageTest extends TestCase
         ];
     }
 
-    /** @dataProvider providerNewFromBase64Malformed */
+    #[DataProvider('providerNewFromBase64Malformed')]
     public function testNewFromBase64Malformed(string $contents, string $expectedMessage): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -88,7 +89,7 @@ final class CaptchaImageTest extends TestCase
         ];
     }
 
-    /** @dataProvider providerNewFromInlineImageMalformed */
+    #[DataProvider('providerNewFromInlineImageMalformed')]
     public function testNewFromInlineImageMalformed(string $inlineImage): void
     {
         $this->expectException(InvalidArgumentException::class);
