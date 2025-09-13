@@ -18,9 +18,9 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         return file_get_contents(static::filePath($filename)) ?: '';
     }
 
-    public function checkPortIsOpen(string $hostname, int $port, float $timeoutSeconds = null): void
+    public function checkPortIsOpen(string $hostname, int $port, ?float $timeoutSeconds = null): void
     {
-        $timeoutSeconds = $timeoutSeconds ?? intval(ini_get('default_socket_timeout'));
+        $timeoutSeconds ??= intval(ini_get('default_socket_timeout'));
         $socket = fsockopen($hostname, $port, $errorNumber, $errorMessage, $timeoutSeconds);
         if (false === $socket) {
             throw new RuntimeException($errorMessage, $errorNumber);

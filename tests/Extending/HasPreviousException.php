@@ -9,37 +9,32 @@ use Throwable;
 
 class HasPreviousException extends Constraint
 {
-    /** @var Throwable */
-    private $exception;
-
-    public function __construct(Throwable $exception)
+    public function __construct(private readonly Throwable $exception)
     {
-        $this->exception = $exception;
     }
 
     public function toString(): string
     {
         return sprintf(
             ' is part of previous exception chain of %s &%s',
-            get_class($this->exception),
-            spl_object_hash($this->exception)
+            $this->exception::class,
+            spl_object_hash($this->exception),
         );
     }
 
-    protected function failureDescription($other): string
+    protected function failureDescription(mixed $other): string
     {
         return sprintf(
             '%s &%s has previous exception %s &%s',
-            get_class($this->exception),
+            $this->exception::class,
             spl_object_hash($this->exception),
-            (is_object($other)) ? get_class($other) : gettype($other),
+            get_debug_type($other),
             (is_object($other)) ? spl_object_hash($other) : '',
         );
     }
 
     /**
      * @param Throwable $other
-     * @return bool
      */
     protected function matches($other): bool
     {

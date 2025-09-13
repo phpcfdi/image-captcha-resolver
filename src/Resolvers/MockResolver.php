@@ -14,7 +14,7 @@ use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 final class MockResolver implements CaptchaResolverInterface, Countable
 {
     /** @var CaptchaAnswerInterface[]|UnableToResolveCaptchaException[] */
-    private $resolveResponses;
+    private array $resolveResponses;
 
     /**
      * MockResolver constructor.

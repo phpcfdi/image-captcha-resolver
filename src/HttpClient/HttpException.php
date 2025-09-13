@@ -12,20 +12,15 @@ use Throwable;
 
 class HttpException extends RuntimeException
 {
-    /** @var RequestInterface */
-    private $request;
-
-    /** @var ResponseInterface|null */
-    private $response;
+    private readonly RequestInterface $request;
 
     public function __construct(
         RequestInterface $request,
-        ResponseInterface $response = null,
-        Throwable $previous = null
+        private readonly ?ResponseInterface $response = null,
+        ?Throwable $previous = null,
     ) {
         parent::__construct("Error on {$request->getMethod()} {$request->getUri()}", 0, $previous);
         $this->request = $request;
-        $this->response = $response;
     }
 
     public function getRequest(): RequestInterface

@@ -2,7 +2,6 @@
     "name": "phpcfdi/image-captcha-resolver",
     "description": "Conectores para resolver captchas de imágenes",
     "license": "MIT",
-    "keywords": [],
     "authors": [
         {
             "name": "Carlos C Soto",
@@ -16,7 +15,7 @@
         "source": "https://github.com/phpcfdi/image-captcha-resolver"
     },
     "require": {
-        "php": ">=7.3",
+        "php": ">=8.2",
         "ext-fileinfo": "*",
         "ext-json": "*",
         "php-http/discovery": "^1.14",
@@ -30,8 +29,8 @@
         "guzzlehttp/psr7": "^2.0",
         "php-http/guzzle7-adapter": "^1.0",
         "php-http/mock-client": "^1.4",
-        "phpunit/phpunit": "^9.5",
-        "symfony/process": "^5.4 || ^6.4 || ^7.1",
+        "phpunit/phpunit": "^11.5",
+        "symfony/process": "^6.4 || ^7.1",
         "vlucas/phpdotenv": "^5.3"
     },
     "suggest": {
@@ -63,21 +62,21 @@
             "@dev:test"
         ],
         "dev:check-style": [
-            "@php -r 'exit(intval(PHP_VERSION_ID >= 80000));' || $PHP_BINARY tools/composer-normalize normalize --dry-run",
-            "@php -r 'exit(intval(PHP_VERSION_ID >= 74000));' || $PHP_BINARY tools/php-cs-fixer fix --dry-run --verbose || true",
+            "@php tools/composer-normalize normalize --dry-run",
+            "@php tools/php-cs-fixer fix --dry-run --verbose || true",
             "@php tools/phpcs --colors -sp"
         ],
         "dev:coverage": [
-            "@php -dzend_extension=xdebug.so -dxdebug.mode=coverage vendor/bin/phpunit --verbose --coverage-html build/coverage/html/"
+            "@php -dzend_extension=xdebug.so -dxdebug.mode=coverage vendor/bin/phpunit --coverage-html build/coverage/html/"
         ],
         "dev:fix-style": [
-            "@php -r 'exit(intval(PHP_VERSION_ID >= 80000));' || $PHP_BINARY tools/composer-normalize normalize",
-            "@php -r 'exit(intval(PHP_VERSION_ID >= 74000));' || $PHP_BINARY tools/php-cs-fixer fix --verbose",
+            "@php tools/composer-normalize normalize",
+            "@php tools/php-cs-fixer fix --verbose",
             "@php tools/phpcbf --colors -sp"
         ],
         "dev:test": [
             "@dev:check-style",
-            "@php vendor/bin/phpunit --testdox --verbose --stop-on-failure",
+            "@php vendor/bin/phpunit --testdox --stop-on-failure",
             "@php tools/phpstan analyse --no-progress --verbose"
         ]
     },

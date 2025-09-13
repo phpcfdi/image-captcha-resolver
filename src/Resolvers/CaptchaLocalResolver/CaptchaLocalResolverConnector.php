@@ -23,31 +23,26 @@ use RuntimeException;
 class CaptchaLocalResolverConnector
 {
     /** @var string Full URL to access service, by example http://localhost:9095 */
-    private $baseUrl;
+    private readonly string $baseUrl;
 
-    /** @var HttpClientInterface */
-    private $httpClient;
+    private readonly HttpClientInterface $httpClient;
 
     /**
      * Connector constructor
      *
      * @param string $baseUrl Full URL to access service, by example http://localhost:9095
-     * @param HttpClientInterface|null $httpClient
      * @throws UndiscoverableClientException
      */
-    public function __construct(string $baseUrl, HttpClientInterface $httpClient = null)
+    public function __construct(string $baseUrl, ?HttpClientInterface $httpClient = null)
     {
         $this->baseUrl = rtrim($baseUrl, '/');
         $this->httpClient = $httpClient ?? HttpClient::discover();
     }
 
     /**
-     * @param CaptchaImageInterface $image
-     * @param TimerInterface $timer
-     * @return CaptchaAnswerInterface
      * @throws RuntimeException if unable to get an answer after <timeout> seconds
      * @throws RuntimeException if unable to send image
-     * @throws RuntimeException if code does not exists
+     * @throws RuntimeException if code does not exist
      * @throws RuntimeException if unable to check code
      * @throws RuntimeException if http transaction error occurs
      */
@@ -70,8 +65,6 @@ class CaptchaLocalResolverConnector
     }
 
     /**
-     * @param CaptchaImageInterface $image
-     * @return string
      * @throws RuntimeException if unable to send image
      * @throws RuntimeException if image was sent but service returns empty code
      * @throws RuntimeException if http transaction error occurs
@@ -86,7 +79,7 @@ class CaptchaLocalResolverConnector
         }
         $contents = strval($response->getBody());
         $data = json_decode($contents, true);
-        $code = (is_array($data)) ? strval($data['code'] ?? '') : '';
+        $code = (is_array($data) && isset($data['code']) && is_scalar($data['code'])) ? strval($data['code']) : '';
         if ('' === $code) {
             throw new RuntimeException('Image was sent but service returns empty code');
         }
@@ -94,11 +87,9 @@ class CaptchaLocalResolverConnector
     }
 
     /**
-     * Check code for answer, if empty string means answer does not exists yet
+     * Check code for answer, if empty string means answer does not exist yet
      *
-     * @param string $code
-     * @return string
-     * @throws RuntimeException if code does not exists
+     * @throws RuntimeException if code does not exist
      * @throws RuntimeException if unable to check code
      * @throws RuntimeException if http transaction error occurs
      */
@@ -119,7 +110,7 @@ class CaptchaLocalResolverConnector
         }
         $contents = strval($response->getBody());
         $data = json_decode($contents, true);
-        return (is_array($data)) ? strval($data['answer'] ?? '') : '';
+        return (is_array($data) && isset($data['answer']) && is_scalar($data['answer'])) ? strval($data['answer']) : '';
     }
 
     public function buildUri(string $action): string

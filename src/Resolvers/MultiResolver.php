@@ -13,18 +13,21 @@ use Throwable;
 
 final class MultiResolver implements CaptchaResolverInterface, Countable
 {
-    /** @var CaptchaResolverInterface[] */
-    private $resolvers;
+    /** @var list<CaptchaResolverInterface> */
+    private readonly array $resolvers;
 
-    /** @var array<int, Throwable|CaptchaAnswerInterface> */
-    private $lastResults = [];
+    private readonly int $resolversCount;
+
+    /** @var list<Throwable|CaptchaAnswerInterface> */
+    private array $lastResults = [];
 
     public function __construct(CaptchaResolverInterface ...$resolvers)
     {
-        $this->resolvers = $resolvers;
+        $this->resolvers = array_values($resolvers);
+        $this->resolversCount = count($this->resolvers);
     }
 
-    /** @return CaptchaResolverInterface[] */
+    /** @return list<CaptchaResolverInterface> */
     public function getResolvers(): array
     {
         return $this->resolvers;
@@ -50,7 +53,7 @@ final class MultiResolver implements CaptchaResolverInterface, Countable
 
     public function count(): int
     {
-        return count($this->resolvers);
+        return $this->resolversCount;
     }
 
     public function clearResults(): void
@@ -58,7 +61,7 @@ final class MultiResolver implements CaptchaResolverInterface, Countable
         $this->lastResults = [];
     }
 
-    /** @return array<int, Throwable|CaptchaAnswerInterface> */
+    /** @return list<Throwable|CaptchaAnswerInterface> */
     public function getLastResults(): array
     {
         return $this->lastResults;

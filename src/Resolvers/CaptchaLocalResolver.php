@@ -14,7 +14,7 @@ use PhpCfdi\ImageCaptchaResolver\Timer\TimerInterface;
 use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 use Throwable;
 
-class CaptchaLocalResolver implements CaptchaResolverInterface
+readonly class CaptchaLocalResolver implements CaptchaResolverInterface
 {
     public const DEFAULT_INITIAL_WAIT = 5;
 
@@ -22,37 +22,22 @@ class CaptchaLocalResolver implements CaptchaResolverInterface
 
     public const DEFAULT_WAIT = 500;
 
-    /** @var CaptchaLocalResolverConnector */
-    private $connector;
-
-    /** @var TimerInterface */
-    private $timer;
-
     public function __construct(
-        CaptchaLocalResolverConnector $connector,
-        TimerInterface $timer
+        private CaptchaLocalResolverConnector $connector,
+        private TimerInterface $timer,
     ) {
-        $this->connector = $connector;
-        $this->timer = $timer;
     }
 
-    /**
-     * @param string $baseUrl
-     * @param int $initialWaitSeconds
-     * @param int $timeoutSeconds
-     * @param int $sleepMilliseconds
-     * @return self
-     * @throws UndiscoverableClientException
-     */
+    /** @throws UndiscoverableClientException */
     public static function create(
         string $baseUrl,
         int $initialWaitSeconds = self::DEFAULT_INITIAL_WAIT,
         int $timeoutSeconds = self::DEFAULT_TIMEOUT,
-        int $sleepMilliseconds = self::DEFAULT_WAIT
+        int $sleepMilliseconds = self::DEFAULT_WAIT,
     ): self {
         return new self(
             new CaptchaLocalResolverConnector($baseUrl),
-            new Timer($initialWaitSeconds, $timeoutSeconds, $sleepMilliseconds)
+            new Timer($initialWaitSeconds, $timeoutSeconds, $sleepMilliseconds),
         );
     }
 

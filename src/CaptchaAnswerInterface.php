@@ -15,7 +15,7 @@ interface CaptchaAnswerInterface extends Stringable, JsonSerializable
      * Compare the current value to another
      *
      * @param Stringable|scalar $value hould be a string or string compatible
-     * @return bool
+     * @noinspection PhpMissingParamTypeInspection
      */
     public function equalsTo($value): bool;
 }

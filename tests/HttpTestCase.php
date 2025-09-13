@@ -16,14 +16,11 @@ use Psr\Http\Message\StreamFactoryInterface;
 
 abstract class HttpTestCase extends TestCase
 {
-    /** @var StreamFactoryInterface */
-    private $streamFactory;
+    private StreamFactoryInterface $streamFactory;
 
-    /** @var RequestFactoryInterface */
-    private $requestFactory;
+    private RequestFactoryInterface $requestFactory;
 
-    /** @var ResponseFactoryInterface */
-    private $responseFactory;
+    private ResponseFactoryInterface $responseFactory;
 
     /** @noinspection PhpUnhandledExceptionInspection */
     protected function setUp(): void
@@ -47,7 +44,6 @@ abstract class HttpTestCase extends TestCase
 
     /**
      * @param array<string, string|string[]> $data
-     * @return ResponseInterface
      */
     protected function createJsonRespose(array $data): ResponseInterface
     {
@@ -56,7 +52,7 @@ abstract class HttpTestCase extends TestCase
         return $responseFactory->createResponse()
             ->withHeader('Content-Type', 'application/json')
             ->withBody(
-                $streamFactory->createStream(json_encode($data) ?: '')
+                $streamFactory->createStream(json_encode($data) ?: ''),
             );
     }
 

@@ -7,6 +7,7 @@ namespace PhpCfdi\ImageCaptchaResolver\Tests\Unit;
 use InvalidArgumentException;
 use PhpCfdi\ImageCaptchaResolver\CaptchaImage;
 use PhpCfdi\ImageCaptchaResolver\Tests\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
 
 final class CaptchaImageTest extends TestCase
 {
@@ -29,7 +30,7 @@ final class CaptchaImageTest extends TestCase
         $this->assertSame($contentBase64, $image->jsonSerialize());
         $this->assertJsonStringEqualsJsonString(
             json_encode($contentBase64) ?: '',
-            json_encode($image, JSON_THROW_ON_ERROR)
+            json_encode($image, JSON_THROW_ON_ERROR),
         );
     }
 
@@ -57,7 +58,7 @@ final class CaptchaImageTest extends TestCase
     }
 
     /** @return array<string, array{string, string}> */
-    public function providerNewFromBase64Malformed(): array
+    public static function providerNewFromBase64Malformed(): array
     {
         return [
             'empty' => ['', 'The captcha image is empty'],
@@ -66,7 +67,7 @@ final class CaptchaImageTest extends TestCase
         ];
     }
 
-    /** @dataProvider providerNewFromBase64Malformed */
+    #[DataProvider('providerNewFromBase64Malformed')]
     public function testNewFromBase64Malformed(string $contents, string $expectedMessage): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -75,9 +76,9 @@ final class CaptchaImageTest extends TestCase
     }
 
     /** @return array<string, array{string}> */
-    public function providerNewFromInlineImageMalformed(): array
+    public static function providerNewFromInlineImageMalformed(): array
     {
-        $image = CaptchaImage::newFromFile($this->filePath('red-pixel.gif'));
+        $image = CaptchaImage::newFromFile(self::filePath('red-pixel.gif'));
         return [
             'empty' => [''],
             'no data part' => ["{$image->getMimeType()};base64,{$image->asBase64()}"],
@@ -88,7 +89,7 @@ final class CaptchaImageTest extends TestCase
         ];
     }
 
-    /** @dataProvider providerNewFromInlineImageMalformed */
+    #[DataProvider('providerNewFromInlineImageMalformed')]
     public function testNewFromInlineImageMalformed(string $inlineImage): void
     {
         $this->expectException(InvalidArgumentException::class);

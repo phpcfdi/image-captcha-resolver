@@ -13,14 +13,14 @@ use PhpCfdi\ImageCaptchaResolver\Resolvers\CaptchaLocalResolver\CaptchaLocalReso
 use PhpCfdi\ImageCaptchaResolver\Tests\Extending\AssertHasPreviousExceptionTrait;
 use PhpCfdi\ImageCaptchaResolver\Tests\HttpTestCase;
 use PhpCfdi\ImageCaptchaResolver\Tests\Unit\FakeExpiredTimer;
+use Psr\Http\Message\RequestInterface;
 use RuntimeException;
 
 final class CaptchaLocalResolverConnectorTest extends HttpTestCase
 {
     use AssertHasPreviousExceptionTrait;
 
-    /** @var string */
-    private $baseUrl = 'http://localhost:9095';
+    private string $baseUrl = 'http://localhost:9095';
 
     public function createConnectorWithMockClient(HttpClientInterface $client): CaptchaLocalResolverConnector
     {
@@ -57,11 +57,12 @@ final class CaptchaLocalResolverConnectorTest extends HttpTestCase
 
         $code = $connector->sendImage($image);
 
+        /** @var RequestInterface $lastRequest */
         $lastRequest = $phpHttpMockClient->getLastRequest();
         $this->assertSame($serviceCode, $code);
         $this->assertJsonStringEqualsJsonString(
             json_encode(['image' => $image->asBase64()]) ?: '',
-            (string) $lastRequest->getBody()
+            (string) $lastRequest->getBody(),
         );
     }
 
@@ -105,11 +106,12 @@ final class CaptchaLocalResolverConnectorTest extends HttpTestCase
 
         $answer = $connector->checkCode($serviceCode);
 
+        /** @var RequestInterface $lastRequest */
         $lastRequest = $phpHttpMockClient->getLastRequest();
         $this->assertSame($serviceAnswer, $answer);
         $this->assertJsonStringEqualsJsonString(
             json_encode(['code' => $serviceCode]) ?: '',
-            (string) $lastRequest->getBody()
+            (string) $lastRequest->getBody(),
         );
     }
 
@@ -125,11 +127,12 @@ final class CaptchaLocalResolverConnectorTest extends HttpTestCase
 
         $answer = $connector->checkCode($serviceCode);
 
+        /** @var RequestInterface $lastRequest */
         $lastRequest = $phpHttpMockClient->getLastRequest();
         $this->assertSame($serviceAnswer, $answer);
         $this->assertJsonStringEqualsJsonString(
             json_encode(['code' => $serviceCode]) ?: '',
-            (string) $lastRequest->getBody()
+            (string) $lastRequest->getBody(),
         );
     }
 

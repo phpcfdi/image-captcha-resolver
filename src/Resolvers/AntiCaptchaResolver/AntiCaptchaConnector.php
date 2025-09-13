@@ -22,22 +22,15 @@ class AntiCaptchaConnector
 {
     public const BASE_URL = 'https://api.anti-captcha.com/';
 
-    /** @var string */
-    private $clientKey;
-
-    /** @var HttpClientInterface */
-    private $httpClient;
+    private readonly HttpClientInterface $httpClient;
 
     /**
      * AntiCaptchaConnector constructor.
      *
-     * @param string $clientKey
-     * @param HttpClientInterface|null $httpClient
      * @throws UndiscoverableClientException
      */
-    public function __construct(string $clientKey, HttpClientInterface $httpClient = null)
+    public function __construct(private readonly string $clientKey, ?HttpClientInterface $httpClient = null)
     {
-        $this->clientKey = $clientKey;
         $this->httpClient = $httpClient ?? HttpClient::discover();
     }
 
@@ -51,12 +44,8 @@ class AntiCaptchaConnector
         return $this->httpClient;
     }
 
-    /**
-     * @param string|Stringable $base64Image
-     * @return string
-     * @throws RuntimeException
-     */
-    public function createTask($base64Image): string
+    /** @throws RuntimeException */
+    public function createTask(string|Stringable $base64Image): string
     {
         /** @see https://anti-captcha.com/es/apidoc/task-types/ImageToTextTask */
         $postData = [
@@ -67,37 +56,59 @@ class AntiCaptchaConnector
             ],
         ];
 
+        /**
+         * @see https://anti-captcha.com/es/apidoc/methods/createTask
+         * @phpstan-var stdClass&object{
+         *     errorId: int,
+         *     errorCode?: string,
+         *     errorDescription?: string,
+         *     taskId: int,
+         * } $result
+         */
         $result = $this->request('createTask', $postData);
 
         return (string) $result->taskId;
     }
 
     /**
-     * @param string $taskId
-     * @return string
      * @throws RuntimeException
      */
     public function getTaskResult(string $taskId): string
     {
-        /** @see https://anti-captcha.com/es/apidoc/methods/getTaskResult */
+        /**
+         * @see https://anti-captcha.com/es/apidoc/methods/getTaskResult
+         * @phpstan-var stdClass&object{
+         *     errorId: int,
+         *     errorCode?: string,
+         *     errorDescription?: string,
+         *     status?: string,
+         *     solution?: stdClass&object{text: string, url: string},
+         *     cost?: string,
+         *     ip?: string,
+         *     createTime?: int,
+         *     endTime?: int,
+         *     solveCount?: int,
+         * } $result
+         */
         $result = $this->request('getTaskResult', [
             'taskId' => $taskId,
         ]);
 
-        $antiCaptchaStatus = strtolower($result->status);
+        $antiCaptchaStatus = strtolower($result->status ?? '');
         if ('processing' === $antiCaptchaStatus) {
             return '';
         }
         if ('ready' === $antiCaptchaStatus) {
+            if (! isset($result->solution)) {
+                throw new LogicException('Expected solution object was not received.');
+            }
             return strval($result->solution->text ?? '');
         }
-        throw new LogicException("Unknown status '$result->status' for task");
+        throw new LogicException(sprintf("Unknown status '%s' for task", $result->status ?? ''));
     }
 
     /**
-     * @param string $methodName
      * @param array<string, mixed> $postData
-     * @return stdClass
      * @throws RuntimeException When anti-captcha service return an error status
      */
     public function request(string $methodName, array $postData): stdClass
@@ -115,10 +126,11 @@ class AntiCaptchaConnector
         if (! $result instanceof stdClass) {
             $result = (object) ['errorId' => 1, 'errorDescription' => 'Response is not a JSON object'];
         }
+        /** @phpstan-var stdClass&object{errorId?: scalar, errorDescription?: scalar} $result */
         $errorId = intval($result->errorId ?? 0);
         if ($errorId > 0) {
             throw new RuntimeException(
-                sprintf('Anti-Captcha Error (%d): %s', $errorId, strval($result->errorDescription ?? ''))
+                sprintf('Anti-Captcha Error (%d): %s', $errorId, $result->errorDescription ?? ''),
             );
         }
 

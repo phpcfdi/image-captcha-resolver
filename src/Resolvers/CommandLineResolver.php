@@ -13,28 +13,20 @@ use PhpCfdi\ImageCaptchaResolver\UnableToResolveCaptchaException;
 use RuntimeException;
 use Throwable;
 
-final class CommandLineResolver implements CaptchaResolverInterface
+final readonly class CommandLineResolver implements CaptchaResolverInterface
 {
     /** @var string[] */
-    private $command;
-
-    /** @var CommandLineResolver\AnswerBuilderInterface */
-    private $answerBuilder;
-
-    /** @var CommandLineResolver\ProcessRunnerInterface */
-    private $processRunner;
+    private array $command;
 
     /**
      * CommandLineResolver constructor.
      *
      * @param string[] $command
-     * @param CommandLineResolver\AnswerBuilderInterface $answerBuilder
-     * @param CommandLineResolver\ProcessRunnerInterface $processRunner
      */
     public function __construct(
         array $command,
-        CommandLineResolver\AnswerBuilderInterface $answerBuilder,
-        CommandLineResolver\ProcessRunnerInterface $processRunner
+        private CommandLineResolver\AnswerBuilderInterface $answerBuilder,
+        private CommandLineResolver\ProcessRunnerInterface $processRunner,
     ) {
         if ([] === $command) {
             throw new LogicException('Invalid command argument');
@@ -43,25 +35,20 @@ final class CommandLineResolver implements CaptchaResolverInterface
             throw new LogicException('Command cannot be "{file}"');
         }
         $this->command = $command;
-        $this->answerBuilder = $answerBuilder;
-        $this->processRunner = $processRunner;
     }
 
     /**
      * @param string[] $command
-     * @param CommandLineResolver\AnswerBuilderInterface|null $answerBuilder
-     * @param CommandLineResolver\ProcessRunnerInterface|null $processRunner
-     * @return static
      */
     public static function create(
         array $command,
-        CommandLineResolver\AnswerBuilderInterface $answerBuilder = null,
-        CommandLineResolver\ProcessRunnerInterface $processRunner = null
+        ?CommandLineResolver\AnswerBuilderInterface $answerBuilder = null,
+        ?CommandLineResolver\ProcessRunnerInterface $processRunner = null,
     ): self {
         return new self(
             $command,
             $answerBuilder ?? new CommandLineResolver\LastLineAnswerBuilder(),
-            $processRunner ?? new CommandLineResolver\SymfonyProcessRunner()
+            $processRunner ?? new CommandLineResolver\SymfonyProcessRunner(),
         );
     }
 
@@ -104,8 +91,6 @@ final class CommandLineResolver implements CaptchaResolverInterface
     }
 
     /**
-     * @param CaptchaImageInterface $image
-     * @return CaptchaAnswerInterface
      * @throws RuntimeException
      */
     private function realResolve(CaptchaImageInterface $image): CaptchaAnswerInterface

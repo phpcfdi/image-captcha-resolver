@@ -14,7 +14,6 @@ final class ConsoleResolverWithInput extends ConsoleResolver
     private $stdin;
 
     /**
-     * @param string $input
      * @return $this
      * @throws RuntimeException
      */

@@ -15,25 +15,13 @@ use Psr\Http\Message\StreamFactoryInterface;
 use RuntimeException;
 use Throwable;
 
-final class HttpClient implements HttpClientInterface
+final readonly class HttpClient implements HttpClientInterface
 {
-    /** @var ClientInterface */
-    private $client;
-
-    /** @var RequestFactoryInterface */
-    private $requestFactory;
-
-    /** @var StreamFactoryInterface */
-    private $streamFactory;
-
     public function __construct(
-        ClientInterface $client,
-        RequestFactoryInterface $requestFactory,
-        StreamFactoryInterface $streamFactory
+        private ClientInterface $client,
+        private RequestFactoryInterface $requestFactory,
+        private StreamFactoryInterface $streamFactory,
     ) {
-        $this->client = $client;
-        $this->requestFactory = $requestFactory;
-        $this->streamFactory = $streamFactory;
     }
 
     /**
@@ -47,7 +35,7 @@ final class HttpClient implements HttpClientInterface
             return new self(
                 Psr18ClientDiscovery::find(),
                 Psr17FactoryDiscovery::findRequestFactory(),
-                Psr17FactoryDiscovery::findStreamFactory()
+                Psr17FactoryDiscovery::findStreamFactory(),
             );
             // @codeCoverageIgnoreStart
         } catch (Throwable $exception) {
@@ -57,10 +45,7 @@ final class HttpClient implements HttpClientInterface
     }
 
     /**
-     * @param string $method
-     * @param string $uri
      * @param array<string, string|string[]> $headers
-     * @return RequestInterface
      */
     public function createRequest(string $method, string $uri, array $headers): RequestInterface
     {
@@ -74,10 +59,7 @@ final class HttpClient implements HttpClientInterface
     }
 
     /**
-     * @param string $method
-     * @param string $uri
      * @param array<string, string|string[]> $headers
-     * @return RequestInterface
      */
     public function createJsonRequest(string $method, string $uri, array $headers): RequestInterface
     {
@@ -88,20 +70,18 @@ final class HttpClient implements HttpClientInterface
         return $this->createRequest($method, $uri, array_merge($jsonHeaders, $headers));
     }
 
-    public function postJson(string $uri, array $headers = [], $data = null): ResponseInterface
+    public function postJson(string $uri, array $headers = [], mixed $data = null): ResponseInterface
     {
         $request = $this->createJsonRequest('POST', $uri, $headers);
 
         $request = $request->withBody(
-            $this->streamFactory->createStream(json_encode($data) ?: '')
+            $this->streamFactory->createStream(json_encode($data) ?: ''),
         );
 
         return $this->send($request);
     }
 
     /**
-     * @param RequestInterface $request
-     * @return ResponseInterface
      * @throws HttpException
      */
     public function send(RequestInterface $request): ResponseInterface

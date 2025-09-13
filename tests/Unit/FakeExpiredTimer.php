@@ -8,16 +8,10 @@ use PhpCfdi\ImageCaptchaResolver\Timer\TimerInterface;
 
 class FakeExpiredTimer implements TimerInterface
 {
-    /** @var int */
-    public $expireAfter;
+    private int|float $waitCount = 0;
 
-    /** @var int */
-    private $waitCount;
-
-    public function __construct(int $expireAfter = 0)
+    public function __construct(public int $expireAfter = 0)
     {
-        $this->expireAfter = $expireAfter;
-        $this->waitCount = 0;
     }
 
     public function getTimeoutSeconds(): int

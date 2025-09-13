@@ -8,10 +8,9 @@ use JsonSerializable;
 use LogicException;
 use Throwable;
 
-final class CaptchaAnswer implements JsonSerializable, CaptchaAnswerInterface
+final readonly class CaptchaAnswer implements JsonSerializable, CaptchaAnswerInterface
 {
-    /** @var string */
-    private $value;
+    private string $value;
 
     public function __construct(string $value)
     {
@@ -31,7 +30,7 @@ final class CaptchaAnswer implements JsonSerializable, CaptchaAnswerInterface
     {
         try {
             return $this->value === strval($value);
-        } catch (Throwable $ex) {
+        } catch (Throwable) {
             return false;
         }
     }

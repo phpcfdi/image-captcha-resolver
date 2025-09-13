@@ -6,14 +6,13 @@ namespace PhpCfdi\ImageCaptchaResolver;
 
 use finfo;
 use InvalidArgumentException;
+use LogicException;
 
-final class CaptchaImage implements CaptchaImageInterface
+final readonly class CaptchaImage implements CaptchaImageInterface
 {
-    /** @var string */
-    private $contents;
+    private string $contents;
 
-    /** @var string */
-    private $mimeType;
+    private string $mimeType;
 
     /**
      * CaptchaImage constructor.
@@ -33,8 +32,8 @@ final class CaptchaImage implements CaptchaImageInterface
             throw new InvalidArgumentException('The captcha image is not base64 encoded');
         }
 
-        $mimeType = self::finfo()->buffer($binary, FILEINFO_MIME_TYPE) ?: '';
-        if ('image/' !== substr($mimeType, 0, 6)) {
+        $mimeType = $this->finfo()->buffer($binary, FILEINFO_MIME_TYPE) ?: '';
+        if (! str_starts_with($mimeType, 'image/')) {
             throw new InvalidArgumentException('The captcha image is not an image');
         }
 
@@ -66,12 +65,15 @@ final class CaptchaImage implements CaptchaImageInterface
         return self::newFromBase64((string) preg_replace('#\s#', '', $parts['image']));
     }
 
-    private static function finfo(): finfo
+    private function finfo(): finfo
     {
         // if finfo is used in other places on the project then move it to a static class
         static $finfo = null;
         if (null === $finfo) {
             $finfo = new finfo(); // @codeCoverageIgnore
+        }
+        if (! $finfo instanceof finfo) {
+            throw new LogicException('Unable to create a finfo instance.');
         }
         return $finfo;
     }
